@@ -1,4 +1,3 @@
-# itmd4515-f22-fp-asatyanarayan1
 Amith Satyanarayan Lab 3 README
 
 Below is the screenshot of the form
@@ -16,6 +15,10 @@ Below is the screenshot displaying error message if we submit blank form
 Screenshot of form with bad input
 ![image](https://user-images.githubusercontent.com/112361486/191319704-9de0530e-59b5-4557-80d2-c1ea940e15ea.png)
 
+Constraint violations printed in log when bad input is given
+![image](https://user-images.githubusercontent.com/112361486/191330645-0ce20b2f-ad8b-4e92-8980-a9fd458996ad.png)
+
+
 Screenshot of form when bad input is submitted
 ![image](https://user-images.githubusercontent.com/112361486/191319889-db860de2-16c2-48ee-adb3-3996ccb7c549.png)
 
@@ -26,15 +29,19 @@ Screenshot of DB when correct input is given
 Q&A's
 
 Your understanding of the difference between the forward and redirect operations.
+
 Forward is sending the current request to other methos with all the data. Redirecting will invoke a new request to a different method
 
 How would you be validating user submissions without the Bean Validation API standard?
+
 By checking DB tables and identifying the changes
 
 How do you think this approach would scale to a real application with 100's of entities?
+
 Time to execute will be be increased as number of entities increass
 
 Why didn't we need to include any additional dependencies (i.e. Bean Validation, JDBC) in this project?
+
 We are using servlets and payara server,it has all the bean, hibernate validators by default
 
 
