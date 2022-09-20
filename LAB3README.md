@@ -20,7 +20,10 @@ Screenshot of form when bad input is submitted
 ![image](https://user-images.githubusercontent.com/112361486/191319889-db860de2-16c2-48ee-adb3-3996ccb7c549.png)
 
 Screenshot of DB when correct input is given
+
 ![image](https://user-images.githubusercontent.com/112361486/191320853-0bcb8ff5-82eb-4d24-868a-4a7957cf91d4.png)
+
+Q&A's
 
 Your understanding of the difference between the forward and redirect operations.
 Forward is sending the current request to other methos with all the data. Redirecting will invoke a new request to a different method
@@ -28,12 +31,10 @@ Forward is sending the current request to other methos with all the data. Redire
 How would you be validating user submissions without the Bean Validation API standard?
 By checking DB tables and identifying the changes
 
-How do you think this approach would scale to a real application with 100's of 
-entities?
+How do you think this approach would scale to a real application with 100's of entities?
 Time to execute will be be increased as number of entities increass
 
-Why didn't we need to include any additional dependencies (i.e. Bean Validation, 
-JDBC) in this project?
+Why didn't we need to include any additional dependencies (i.e. Bean Validation, JDBC) in this project?
 We are using servlets and payara server,it has all the bean, hibernate validators by default
 
 
