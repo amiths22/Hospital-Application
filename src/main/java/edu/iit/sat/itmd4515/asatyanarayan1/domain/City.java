@@ -19,12 +19,12 @@ public class City {
     public City(){
         
     }
-    @NotNull
+    @NotNull (message="City ID is required")
     @Positive
     private Integer cityId;
-    @NotBlank 
+    @NotBlank (message="City name is required")
     private String city;
-    @NotNull
+    @NotNull (message="Country ID is required")
     private Integer countryId;
 
     public City(Integer cityId,String city, Integer countryId) {
