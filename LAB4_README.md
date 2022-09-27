@@ -16,9 +16,9 @@ There is only one entity required for Lab 4, but what other entities from your b
 
 **Test Cases:**
 **Test Create**
-#Create
 
-  Patient createMe=new Patient("Almitha",PatientGender.Female,LocalDate.of(1995, Month.AUGUST, 20),"Hassan");
+#Create
+        Patient createMe=new Patient("Almitha",PatientGender.Female,LocalDate.of(1995, Month.AUGUST, 20),"Hassan");
         tx.begin();
         em.persist(createMe);
         tx.commit();
