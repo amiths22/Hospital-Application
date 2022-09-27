@@ -13,7 +13,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -25,10 +28,15 @@ public class Patient {
     
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
+    @Size(min=4,max=40)
     @Column(name="patient_name", nullable=false,unique=true)
     private String name;
     @Enumerated(EnumType.STRING)
     private PatientGender gender;
+    
+    @PastOrPresent
+    private LocalDate dob;
 
     public Patient(String name, PatientGender gender, LocalDate dob, String address) {
         this.name = name;
@@ -82,7 +90,7 @@ public class Patient {
     }
 
     
-    private LocalDate dob;
+   
     
     private String address;
 

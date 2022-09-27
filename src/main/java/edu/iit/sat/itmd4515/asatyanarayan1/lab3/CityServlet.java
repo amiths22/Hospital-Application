@@ -2,9 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package edu.iit.sat.itmd4515.asatyanarayan1.web;
+package edu.iit.sat.itmd4515.asatyanarayan1.lab3;
 
-import edu.iit.sat.itmd4515.asatyanarayan1.domain.City;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.Integer.parseInt;
@@ -79,12 +78,21 @@ public class CityServlet extends HttpServlet {
                 String countryIdparam=request.getParameter("countryId");
 
                 Integer cityId=null;
+                Integer temp=null;
                 if(cityIdparam !=null && !cityIdparam.isBlank()){
-                    cityId=Integer.valueOf(cityIdparam);
+                    temp=Integer.valueOf(cityIdparam);
+                    if(temp<999){
+                        cityId=temp;
+                    }
                 }
                  Integer countryId=null;
+                 Integer temp1=null;
                 if(countryIdparam !=null && !countryIdparam.isBlank()){
-                    countryId=Integer.parseInt(countryIdparam);
+                    temp1=Integer.parseInt(countryIdparam);
+                    temp=Integer.valueOf(countryIdparam);
+                    if(temp1<110){
+                        countryId=temp1;
+                    }
                 }
                 
                 
