@@ -17,6 +17,7 @@ There is only one entity required for Lab 4, but what other entities from your b
 **Test Cases:**
 **Test Create**
 #Create
+
   Patient createMe=new Patient("Almitha",PatientGender.Female,LocalDate.of(1995, Month.AUGUST, 20),"Hassan");
         tx.begin();
         em.persist(createMe);
@@ -28,6 +29,7 @@ There is only one entity required for Lab 4, but what other entities from your b
         tx.begin();
         em.remove(createMe);
         tx.commit();
+        
  //In this block we are creating a new row and checking if its available  
  ----------------------------------------------------------------------------------------------------
 **Test Read**
