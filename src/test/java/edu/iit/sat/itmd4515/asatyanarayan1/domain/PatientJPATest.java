@@ -13,6 +13,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -48,16 +49,54 @@ public class PatientJPATest {
     }
     
     @Test
-    public void createTest(){}
+    public void createTest(){
+        Patient createMe=new Patient("Almitha",PatientGender.Female,LocalDate.of(1995, Month.AUGUST, 20),"Hassan");
+        tx.begin();
+        em.persist(createMe);
+        tx.commit();
+        
+        Patient compareMe=em.find(Patient.class,createMe.getId());
+        assertEquals(createMe.getName(),compareMe.getName());
+        
+        tx.begin();
+        em.remove(createMe);
+        tx.commit();
+    }
     
     @Test
-    public void readTest(){}
+    public void readTest(){
+        Patient readMe= em.createQuery("select p from Patient p WHERE p.name='Satya'", Patient.class).getSingleResult();
+        
+        assertEquals("Satya",readMe.getName());
+    }
     
     @Test
-    public void updateTest(){}
+    public void updateTest(){
+        Patient updateMe= em.createQuery("select p from Patient p WHERE p.name='Satya'", Patient.class).getSingleResult();
+        tx.begin();
+        updateMe.setAddress("Banglore");
+        tx.commit();
+        
+        Patient compareMe=em.find(Patient.class,updateMe.getId());
+        assertEquals(updateMe.getAddress(),compareMe.getAddress());
+    }
     
     @Test
-    public void deleteTest(){}
+    public void deleteTest(){
+        Patient deleteMe=new Patient("Almitha",PatientGender.Female,LocalDate.of(1990, Month.MARCH, 20),"Hassan");
+        tx.begin();
+        em.persist(deleteMe);
+        tx.commit();
+        
+        assertNotNull(deleteMe.getId());
+        
+        tx.begin();
+        em.remove(deleteMe);
+        tx.commit();
+        
+        Patient existanceCheck=em.find(Patient.class,deleteMe.getId());
+        assertNull(existanceCheck);
+    }
     
     @AfterEach
     public void afterEach(){
@@ -75,6 +114,4 @@ public class PatientJPATest {
     public static void afterAll(){
         emf.close();
     }
-    
-    
 }

@@ -37,6 +37,9 @@ public class Patient {
     
     @PastOrPresent
     private LocalDate dob;
+    
+    private String address;
+
 
     public Patient(String name, PatientGender gender, LocalDate dob, String address) {
         this.name = name;
@@ -92,7 +95,6 @@ public class Patient {
     
    
     
-    private String address;
 
     /**
      * Get the value of address
