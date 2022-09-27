@@ -24,7 +24,6 @@ import javax.validation.constraints.Size;
  */
 @Entity
 public class Patient {
-
     
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -50,7 +49,6 @@ public class Patient {
 
     public Patient() {
     }
-    
     
     
 
