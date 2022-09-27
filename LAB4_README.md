@@ -18,6 +18,7 @@ There is only one entity required for Lab 4, but what other entities from your b
 **Test Create**
 
 #Create
+
         Patient createMe=new Patient("Almitha",PatientGender.Female,LocalDate.of(1995, Month.AUGUST, 20),"Hassan");
         tx.begin();
         em.persist(createMe);
@@ -30,32 +31,36 @@ There is only one entity required for Lab 4, but what other entities from your b
         em.remove(createMe);
         tx.commit();
         
- //In this block we are creating a new row and checking if its available  
+ In this block we are creating a new row and checking if its available  
  ----------------------------------------------------------------------------------------------------
 **Test Read**
  #Read
-    Patient readMe= em.createQuery("select p from Patient p WHERE p.name='Satya'", Patient.class).getSingleResult();
+ 
+        Patient readMe= em.createQuery("select p from Patient p WHERE p.name='Satya'", Patient.class).getSingleResult();
         
         assertEquals("Satya",readMe.getName());
-//In this block we are using select query to find the given value from the table
+In this block we are using select query to find the given value from the table
 -----------------------------------------------------------------------------------------------------
 **Test Update**
 #Update
-    @Test
-    public void updateTest(){
+
+
+        @Test
+        public void updateTest(){
         
-         Patient updateMe= em.createQuery("select p from Patient p WHERE p.name='Satya'", Patient.class).getSingleResult();
+        Patient updateMe= em.createQuery("select p from Patient p WHERE p.name='Satya'", Patient.class).getSingleResult();
         tx.begin();
         updateMe.setAddress("Banglore");
         tx.commit();
         
         Patient compareMe=em.find(Patient.class,updateMe.getId());
         assertEquals(updateMe.getAddress(),compareMe.getAddress());
-//In this block we are updating a row in the table and checking if it gets updated in the database
+In this block we are updating a row in the table and checking if it gets updated in the database
 ----------------------------------------------------------------------------------------------------
 **Test Delete**
 #Delete
-    public void deleteTest(){
+
+        public void deleteTest(){
         Patient deleteMe=new Patient("Almitha",PatientGender.Female,LocalDate.of(1990, Month.MARCH, 20),"Hassan");
         tx.begin();
         em.persist(deleteMe);
@@ -69,57 +74,62 @@ There is only one entity required for Lab 4, but what other entities from your b
         
         Patient existanceCheck=em.find(Patient.class,deleteMe.getId());
         assertNull(existanceCheck);
-    }    
-//In this block we are creating a new row and deleting it.
+        }    
+In this block we are creating a new row and deleting it.
 -----------------------------------------------------------------------------------------------
 **Test Invalid Name**
-    public void patientIsInValid_malformedname() {
+
+        public void patientIsInValid_malformedname() {
         Patient p= new Patient("",PatientGender.Male,LocalDate.of(1980, Month.MARCH, 15),"Hassan");
         Set<ConstraintViolation<Patient>> violations = validator.validate(p);
         
-       for(ConstraintViolation<Patient> violation : violations){
+        for(ConstraintViolation<Patient> violation : violations){
            System.out.println(violation.toString());
-       }
+        }
         
         assertEquals( 2, violations.size() );
-    }
+        }
   
-//In this block we are passing empty name in the column Name and checking for violation
+In this block we are passing empty name in the column Name and checking for violation
   -----------------------------------------------------------------------------------------------
 **Test Valid Name**
-    public void patientIsValid(){
+    
+        public void patientIsValid(){
         Patient p= new Patient("Satya",PatientGender.Male,LocalDate.of(1980, Month.MARCH, 15),"Hassan");
         Set<ConstraintViolation<Patient>> violations = validator.validate(p);
         assertEquals(0,violations.size());
                 }
-  //In this block we are passing the correct value and checking for violation
+    
+  In this block we are passing the correct value and checking for violation
   ----------------------------------------------------------------------------------------------------------
   **Test Invalid Date**
-    public void patientIsInValid_malformeddate() {
+    
+        public void patientIsInValid_malformeddate() {
         Patient p= new Patient("Anu",PatientGender.Male,LocalDate.of(2023, Month.MARCH, 15),"Hassan");
         Set<ConstraintViolation<Patient>> violations = validator.validate(p);
         
-       for(ConstraintViolation<Patient> violation : violations){
+        for(ConstraintViolation<Patient> violation : violations){
            System.out.println(violation.toString());
-       }
+        }
         
-        assertEquals( 2, violations.size() );
-    }
+         assertEquals( 2, violations.size() );
+          }
     
-  //Future date is passed in Date of Birth column
+  Future date is passed in Date of Birth column
   ---------------------------------------------------------------------------------------------------------------
  ***Test Valid Date***
-    public void patientIsInValid_correctdate() {
+    
+        public void patientIsInValid_correctdate() {
         Patient p= new Patient("Anu",PatientGender.Male,LocalDate.of(2022, Month.MARCH, 15),"Hassan");
         Set<ConstraintViolation<Patient>> violations = validator.validate(p);
-       for(ConstraintViolation<Patient> violation : violations){
+        for(ConstraintViolation<Patient> violation : violations){
            System.out.println(violation.toString());
-       }
+         }
         
-        assertEquals( 1, violations.size() );
-    }
+            assertEquals( 1, violations.size() );
+         }
     
-  //Past or present date is passed
+  Past or present date is passed
   -------------------------------------------------------------------------------------------------------------------
     
     Screenshot of All 8 test cases passed
