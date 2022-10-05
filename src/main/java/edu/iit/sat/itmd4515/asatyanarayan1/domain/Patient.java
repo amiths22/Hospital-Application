@@ -5,6 +5,8 @@
 package edu.iit.sat.itmd4515.asatyanarayan1.domain;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +15,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
@@ -24,34 +27,33 @@ import javax.validation.constraints.Size;
  */
 @Entity
 public class Patient {
-    
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
-    @Size(min=4,max=40)
-    @Column(name="patient_name", nullable=false,unique=true)
+    @Size(min = 4, max = 40)
+    @Column(name = "patient_name", nullable = false, unique = true)
     private String name;
     @Enumerated(EnumType.STRING)
     private PatientGender gender;
-    
+
     @PastOrPresent
     private LocalDate dob;
-    
-    private String address;
-    
 
+    private String address;
+    @OneToMany(mappedBy = "patient")
+    private List<Appointment> appointments = new ArrayList<>();
 
     public Patient(String name, PatientGender gender, LocalDate dob, String address) {
         this.name = name;
-        this.gender = gender;
+        this.gender = gender; 
         this.dob = dob;
         this.address = address;
     }
 
     public Patient() {
     }
-    
-    
 
     /**
      * Get the value of gender
@@ -71,8 +73,6 @@ public class Patient {
         this.gender = gender;
     }
 
-    
-
     /**
      * Get the value of id
      *
@@ -90,10 +90,6 @@ public class Patient {
     public void setId(Long id) {
         this.id = id;
     }
-
-    
-   
-    
 
     /**
      * Get the value of address
@@ -113,8 +109,6 @@ public class Patient {
         this.address = address;
     }
 
-
-   
     /**
      * Get the value of dob
      *
@@ -132,10 +126,6 @@ public class Patient {
     public void setDob(LocalDate dob) {
         this.dob = dob;
     }
-
- 
-
-    
 
     /**
      * Get the value of name
@@ -179,12 +169,10 @@ public class Patient {
             return false;
         }
         final Patient other = (Patient) that;
-        if((this.id == null) || (other.id==null)){
+        if ((this.id == null) || (other.id == null)) {
             return false;
         }
         return Objects.equals(this.id, other.id);
     }
-
-   
 
 }

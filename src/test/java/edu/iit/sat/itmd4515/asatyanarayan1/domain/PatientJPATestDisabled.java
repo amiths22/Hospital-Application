@@ -22,31 +22,13 @@ import org.junit.jupiter.api.Test;
  *
  * @author amith
  */
-public class PatientJPATest {
+public class PatientJPATestDisabled extends AbstractJPATest{
     
-    private static EntityManagerFactory emf;
-    private static final Logger LOG = Logger.getLogger(PatientJPATest.class.getName());
-    private EntityManager em;
-    private EntityTransaction tx;
+    //private static EntityManagerFactory emf;
+    private static final Logger LOG = Logger.getLogger(PatientJPATestDisabled.class.getName());
+    //private EntityManager em;
+    //private EntityTransaction tx;
     
-    @BeforeAll
-    public static void beforeAll(){
-        emf=Persistence.createEntityManagerFactory("itmd4515testPU");
-    }
-    @BeforeEach
-    public void beforeEach(){
-    //em
-    em=emf.createEntityManager();
-    
-    //tx
-    tx=em.getTransaction();
-          
-    //create test data for use in every test case
-    Patient test=new Patient("Satya",PatientGender.Male,LocalDate.of(1980, Month.MARCH, 15),"Hassan");
-    tx.begin();
-    em.persist(test);
-    tx.commit();
-    }
     
     @Test
     public void createTest(){
@@ -96,22 +78,5 @@ public class PatientJPATest {
         
         Patient existanceCheck=em.find(Patient.class,deleteMe.getId());
         assertNull(existanceCheck);
-    }
-    
-    @AfterEach
-    public void afterEach(){
-    //close some resources
-    Patient deleteMe= em.createQuery("select p from Patient p WHERE p.name='Satya'", Patient.class).getSingleResult();
-    
-    tx.begin();
-    em.remove(deleteMe);
-    tx.commit();
-    em.close();
-    //clean up test data
-    }
-    
-    @AfterAll
-    public static void afterAll(){
-        emf.close();
     }
 }

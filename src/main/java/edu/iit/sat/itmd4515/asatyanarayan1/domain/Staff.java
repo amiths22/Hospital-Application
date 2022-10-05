@@ -4,11 +4,16 @@
  */
 package edu.iit.sat.itmd4515.asatyanarayan1.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -22,31 +27,32 @@ public class Staff {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-     @NotBlank
-    @Size(min=4,max=40)
+    @NotBlank
+    @Size(min = 4, max = 40)
     private String name;
 
     private String department;
 
-    private Long phone;
+    private Integer phone;
+
+    @ManyToMany(mappedBy = "staffs")
+    private List<Doctor> doctors=  new ArrayList<>();
 
     public Staff() {
     }
 
-    public Staff(String name, String department, Long phone) {
+    public Staff(String name, String department, Integer phone) {
         this.name = name;
         this.department = department;
         this.phone = phone;
     }
-    
-    
 
     /**
      * Get the value of phone
      *
      * @return the value of phone
      */
-    public Long getPhone() {
+    public Integer getPhone() {
         return phone;
     }
 
@@ -55,7 +61,7 @@ public class Staff {
      *
      * @param phone new value of phone
      */
-    public void setPhone(Long phone) {
+    public void setPhone(Integer phone) {
         this.phone = phone;
     }
 
@@ -137,10 +143,18 @@ public class Staff {
             return false;
         }
         final Staff other = (Staff) obj;
-        if((this.id == null) || (other.id==null)){
+        if ((this.id == null) || (other.id == null)) {
             return false;
         }
         return Objects.equals(this.id, other.id);
+    }
+
+    public List<Doctor> getDoctors() {
+        return doctors;
+    }
+
+    public void setDoctors(List<Doctor> doctors) {
+        this.doctors = doctors;
     }
 
 }

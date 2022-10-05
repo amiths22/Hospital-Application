@@ -4,11 +4,17 @@
  */
 package edu.iit.sat.itmd4515.asatyanarayan1.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -18,33 +24,43 @@ import javax.validation.constraints.Size;
  */
 @Entity
 public class Doctor {
-    
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
-    
-    @Size(min=4,max=40)
+
+    @Size(min = 4, max = 40)
     private String name;
 
     private String specialization;
 
-    private Long phone;
+    private Integer phone;
 
     private String address;
-    
+
     //A doctor can have many patients,
+    @OneToMany(mappedBy = "doctor")
+    private List<Appointment> appointments = new ArrayList<>();
+
+    
+    @ManyToMany
+    @JoinTable(name = "DOCTOR_STAFF",
+        joinColumns = @JoinColumn(name = "DOCTOR_ID"),
+        inverseJoinColumns = @JoinColumn(name = "STAFF_ID"))
+    private List<Staff> staffs = new ArrayList<>();
 
     public Doctor() {
     }
 
-    public Doctor( String name, String stream, Long phone, String address) {
+
+
+    public Doctor(String name, String stream, Integer phone, String address) {
         this.name = name;
         this.specialization = stream;
         this.phone = phone;
         this.address = address;
     }
-    
-    
 
     /**
      * Get the value of address
@@ -69,7 +85,7 @@ public class Doctor {
      *
      * @return the value of phone
      */
-    public Long getPhone() {
+    public Integer getPhone() {
         return phone;
     }
 
@@ -78,7 +94,7 @@ public class Doctor {
      *
      * @param phone new value of phone
      */
-    public void setPhone(Long phone) {
+    public void setPhone(Integer phone) {
         this.phone = phone;
     }
 
@@ -160,10 +176,25 @@ public class Doctor {
             return false;
         }
         final Doctor other = (Doctor) obj;
-        if((this.id == null) || (other.id==null)){
+        if ((this.id == null) || (other.id == null)) {
             return false;
         }
         return Objects.equals(this.id, other.id);
     }
-    
+
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
+    }
+    public List<Staff> getStaffs() {
+        return staffs;
+    }
+    public void setStaffs(List<Staff> staffs) {
+        this.staffs = staffs;
+    }
+
+
 }
