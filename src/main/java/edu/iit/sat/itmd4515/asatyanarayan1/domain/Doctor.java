@@ -4,7 +4,13 @@
  */
 package edu.iit.sat.itmd4515.asatyanarayan1.domain;
 
+import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -12,5 +18,152 @@ import javax.persistence.Entity;
  */
 @Entity
 public class Doctor {
+    
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @NotBlank
+    
+    @Size(min=4,max=40)
+    private String name;
+
+    private String specialization;
+
+    private Long phone;
+
+    private String address;
+    
+    //A doctor can have many patients,
+
+    public Doctor() {
+    }
+
+    public Doctor( String name, String stream, Long phone, String address) {
+        this.name = name;
+        this.specialization = stream;
+        this.phone = phone;
+        this.address = address;
+    }
+    
+    
+
+    /**
+     * Get the value of address
+     *
+     * @return the value of address
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * Set the value of address
+     *
+     * @param address new value of address
+     */
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    /**
+     * Get the value of phone
+     *
+     * @return the value of phone
+     */
+    public Long getPhone() {
+        return phone;
+    }
+
+    /**
+     * Set the value of phone
+     *
+     * @param phone new value of phone
+     */
+    public void setPhone(Long phone) {
+        this.phone = phone;
+    }
+
+    /**
+     * Get the value of stream
+     *
+     * @return the value of stream
+     */
+    public String getSpecialization() {
+        return specialization;
+    }
+
+    /**
+     * Set the value of stream
+     *
+     * @param stream new value of stream
+     */
+    public void setSpecialization(String stream) {
+        this.specialization = stream;
+    }
+
+    /**
+     * Get the value of name
+     *
+     * @return the value of name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Set the value of name
+     *
+     * @param name new value of name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Get the value of id
+     *
+     * @return the value of id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @param id new value of id
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Doctor{" + "id=" + id + ", name=" + name + ", stream=" + specialization + ", phone=" + phone + ", address=" + address + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Doctor other = (Doctor) obj;
+        if((this.id == null) || (other.id==null)){
+            return false;
+        }
+        return Objects.equals(this.id, other.id);
+    }
     
 }
