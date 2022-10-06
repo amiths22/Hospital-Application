@@ -42,8 +42,11 @@ public class Patient {
     private LocalDate dob;
 
     private String address;
+    
     @OneToMany(mappedBy = "patient")
-    private List<Appointment> appointments = new ArrayList<>();
+    //private List<Appointment> appointments = new ArrayList<>();
+    private List<Appointment> appointments = new ArrayList<>();;
+    
 
     public Patient(String name, PatientGender gender, LocalDate dob, String address) {
         this.name = name;
@@ -51,6 +54,8 @@ public class Patient {
         this.dob = dob;
         this.address = address;
     }
+
+
 
     public Patient() {
     }
@@ -173,6 +178,12 @@ public class Patient {
             return false;
         }
         return Objects.equals(this.id, other.id);
+    }
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
     }
 
 }
