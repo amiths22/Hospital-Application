@@ -28,15 +28,17 @@ public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     @NotBlank
-
     @Size(min = 4, max = 40)
     private String name;
-
+    
+    @NotBlank
     private String specialization;
 
     private Integer phone;
-
+    
+    @NotBlank
     private String address;
 
     //A doctor can have many patients,

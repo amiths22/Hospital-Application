@@ -24,8 +24,8 @@ public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     @Future
-
     private LocalDate appointDate;
 
     private LocalTime appointTime;

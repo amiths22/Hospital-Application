@@ -27,10 +27,12 @@ public class Staff {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     @NotBlank
     @Size(min = 4, max = 40)
     private String name;
 
+    @NotBlank
     private String department;
 
     private Integer phone;

@@ -5,6 +5,7 @@
 package edu.iit.sat.itmd4515.asatyanarayan1.domain;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.Month;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
@@ -73,6 +74,124 @@ public class PatientValdationTest {
        }
         
         assertEquals( 2, violations.size() );
+    }
+     
+    @Test
+     public void AppointmentIsValid_apptdate() {
+        Appointment a = new Appointment(LocalDate.of(2023, Month.MARCH, 1),LocalTime.of(4, 0));
+        Set<ConstraintViolation<Appointment>> violations = validator.validate(a);
+       for(ConstraintViolation<Appointment> violation : violations){
+           System.out.println(violation.toString());
+       }
+        
+        assertEquals( 0, violations.size() );
+    }
+     
+     @Test
+     public void AppointmentIsInValid_apptdate() {
+        Appointment a = new Appointment(LocalDate.of(2020, Month.MARCH, 1),LocalTime.of(4, 0));
+        Set<ConstraintViolation<Appointment>> violations = validator.validate(a);
+       for(ConstraintViolation<Appointment> violation : violations){
+           System.out.println(violation.toString());
+       }
+        
+        assertEquals( 1, violations.size() );
+    }
+     
+     
+    @Test
+    public void DoctorIsValidName(){
+        Doctor d = new Doctor("Amith", "Surgery", 12345, "hassan");
+        Set<ConstraintViolation<Doctor>> violations = validator.validate(d);
+        assertEquals(0,violations.size());
+                }
+    
+    @Test
+    public void DoctorIsInValidName() {
+        Doctor d = new Doctor("", "Surgery", 12345, "hassan");
+        Set<ConstraintViolation<Doctor>> violations = validator.validate(d);
+        
+       for(ConstraintViolation<Doctor> violation : violations){
+           System.out.println(violation.toString());
+       }
+        
+        assertEquals( 2, violations.size() );
+    }
+    
+    @Test
+    public void DoctorIsValidSpecialization(){
+        Doctor d = new Doctor("Amith", "Surgery", 12345, "hassan");
+        Set<ConstraintViolation<Doctor>> violations = validator.validate(d);
+        assertEquals(0,violations.size());
+                }
+    
+    @Test
+    public void DoctorIsInValidSpecialization() {
+        Doctor d = new Doctor("Amith", "", 12345, "hassan");
+        Set<ConstraintViolation<Doctor>> violations = validator.validate(d);
+        
+       for(ConstraintViolation<Doctor> violation : violations){
+           System.out.println(violation.toString());
+       }
+        
+        assertEquals( 1, violations.size() );
+    }
+    
+    @Test
+    public void DoctorIsValidAddress(){
+        Doctor d = new Doctor("Amith", "Surgery", 12345, "hassan");
+        Set<ConstraintViolation<Doctor>> violations = validator.validate(d);
+        assertEquals(0,violations.size());
+                }
+    
+    @Test
+    public void DoctorIsInValidAddress() {
+        Doctor d = new Doctor("Amith", "Surgery", 12345, "");
+        Set<ConstraintViolation<Doctor>> violations = validator.validate(d);
+        
+       for(ConstraintViolation<Doctor> violation : violations){
+           System.out.println(violation.toString());
+       }
+        
+        assertEquals( 1, violations.size() );
+    }
+    
+    @Test
+    public void StaffIsValidName(){
+        Staff s = new Staff("test", "HR", 12222);
+        Set<ConstraintViolation<Staff>> violations = validator.validate(s);
+        assertEquals(0,violations.size());
+                }
+    
+    @Test
+    public void StaffIsInValidName() {
+        Staff s = new Staff("", "HR", 12222);
+        Set<ConstraintViolation<Staff>> violations = validator.validate(s);
+        
+       for(ConstraintViolation<Staff> violation : violations){
+           System.out.println(violation.toString());
+       }
+        
+        assertEquals( 2, violations.size() );
+    }
+    
+    @Test
+    public void StaffIsValidDepartment(){
+        Staff s = new Staff("test", "HR", 12222);
+        Set<ConstraintViolation<Staff>> violations = validator.validate(s);
+        assertEquals(0,violations.size());
+                }
+    
+    @Test
+    public void StaffIsInValidDepartment() {
+        Staff s = new Staff("test", "", 12222);
+        Set<ConstraintViolation<Staff>> violations = validator.validate(s);
+        
+       for(ConstraintViolation<Staff> violation : violations){
+           System.out.println(violation.toString());
+       }
+        
+        assertEquals( 1, violations.size() );
     }
     
     @AfterEach
