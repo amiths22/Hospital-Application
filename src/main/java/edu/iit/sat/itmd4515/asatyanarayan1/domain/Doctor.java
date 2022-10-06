@@ -61,6 +61,24 @@ public class Doctor {
         this.phone = phone;
         this.address = address;
     }
+    
+    public void addStaff(Staff s) {
+        if (!this.staffs.contains(s)) {
+            this.staffs.add(s);
+        }
+        if (!s.getDoctors().contains(this)) {
+            s.getDoctors().add(this);
+        }
+    }
+    
+    public void removeStaff(Staff s) {
+        if (this.staffs.contains(s)) {
+            this.staffs.remove(s);
+        }
+        if (s.getDoctors().contains(this)) {
+            s.getDoctors().remove(this);
+        }
+    }
 
     /**
      * Get the value of address

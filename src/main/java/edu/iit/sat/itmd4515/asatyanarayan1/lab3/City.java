@@ -5,6 +5,8 @@
 package edu.iit.sat.itmd4515.asatyanarayan1.lab3;
 
 import java.time.LocalDate;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -14,11 +16,13 @@ import javax.validation.constraints.Positive;
  *
  * @author amith
  */
+@Entity
 public class City {
     
     public City(){
         
     }
+    @Id
     @NotNull (message="City ID is required & should be less than 999")
     @Positive
     private Integer cityId;
