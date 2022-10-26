@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.Future;
 
 /**
@@ -19,6 +20,8 @@ import javax.validation.constraints.Future;
  * @author amith
  */
 @Entity
+@NamedQuery(name="Appointment.findAll",query="select a from Appointment a")
+
 public class Appointment extends AbstarctEntity {
 
 
@@ -41,7 +44,32 @@ public class Appointment extends AbstarctEntity {
         this.appointDate = date;
         this.appointTime = time;
     }
-
+    
+    public void addAppt(Patient p,Doctor d){
+        
+        this.doctor=d;
+        this.patient=p;
+        
+        if(!p.getAppointments().contains(this)){
+            p.getAppointments().add(this);
+        }
+        if(!d.getAppointments().contains(this)){
+            d.getAppointments().add(this);
+        }
+        
+    }
+     public void delAppt(Patient p,Doctor d){
+        
+        if(this.patient.getAppointments().contains(this)){
+            this.patient.getAppointments().remove(this);
+        }
+        if(this.doctor.getAppointments().contains(this)){
+            this.doctor.getAppointments().remove(this);
+        }
+        this.doctor=null;
+        this.patient=null;
+        
+    }
     public LocalDate getAppointDate() {
         return appointDate;
     }

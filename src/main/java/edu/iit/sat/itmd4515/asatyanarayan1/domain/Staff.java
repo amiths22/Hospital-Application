@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -22,6 +23,7 @@ import javax.validation.constraints.Size;
  * @author amith
  */
 @Entity
+@NamedQuery(name="Staff.findAll",query="select s from Staff s")
 public class Staff extends AbstractNamedEntity{
 
   

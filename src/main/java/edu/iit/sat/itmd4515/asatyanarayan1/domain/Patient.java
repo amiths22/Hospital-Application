@@ -28,6 +28,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @NamedQuery(name="Patient.findByName",query="select p from Patient p WHERE p.name=:NAME")
+@NamedQuery(name="Patient.findAll",query="select p from Patient p")
 public class Patient extends AbstarctEntity {
 
     @NotBlank
