@@ -22,10 +22,10 @@ import org.junit.jupiter.api.Test;
  *
  * @author amith
  */
-public class PatientJPATestDisabled extends AbstractJPATest{
+public class PatientJPATest extends AbstractJPATest{
     
     //private static EntityManagerFactory emf;
-    private static final Logger LOG = Logger.getLogger(PatientJPATestDisabled.class.getName());
+    private static final Logger LOG = Logger.getLogger(PatientJPATest.class.getName());
     //private EntityManager em;
     //private EntityTransaction tx;
     

@@ -52,8 +52,8 @@ public class AbstractJPATest {
     @AfterEach
     public void afterEach(){
     //close some resources
-    Patient deleteMe= em.createQuery("select p from Patient p WHERE p.name='Satya'", Patient.class).getSingleResult();
-    
+    Patient deleteMe= //em.createQuery("select p from Patient p WHERE p.name='Satya'", Patient.class).getSingleResult();
+    em.createNamedQuery("Patient.findByName", Patient.class).setParameter("NAME", "Satya").getSingleResult();
     tx.begin();
     em.remove(deleteMe);
     tx.commit();

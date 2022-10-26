@@ -15,6 +15,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -26,11 +27,9 @@ import javax.validation.constraints.Size;
  * @author amith
  */
 @Entity
-public class Patient {
+@NamedQuery(name="Patient.findByName",query="select p from Patient p WHERE p.name=:NAME")
+public class Patient extends AbstarctEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     @NotBlank
     @Size(min = 4, max = 40)
     @Column(name = "patient_name", nullable = false, unique = true)
@@ -42,20 +41,20 @@ public class Patient {
     private LocalDate dob;
 
     private String address;
-    
+
     @OneToMany(mappedBy = "patient")
     //private List<Appointment> appointments = new ArrayList<>();
-    private List<Appointment> appointments = new ArrayList<>();;
+    private List<Appointment> appointments = new ArrayList<>();
+
+    ;
     
 
     public Patient(String name, PatientGender gender, LocalDate dob, String address) {
         this.name = name;
-        this.gender = gender; 
+        this.gender = gender;
         this.dob = dob;
         this.address = address;
     }
-
-
 
     public Patient() {
     }
@@ -76,24 +75,6 @@ public class Patient {
      */
     public void setGender(PatientGender gender) {
         this.gender = gender;
-    }
-
-    /**
-     * Get the value of id
-     *
-     * @return the value of id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * Set the value of id
-     *
-     * @param id new value of id
-     */
-    public void setId(Long id) {
-        this.id = id;
     }
 
     /**
@@ -179,9 +160,11 @@ public class Patient {
         }
         return Objects.equals(this.id, other.id);
     }
+
     public List<Appointment> getAppointments() {
         return appointments;
     }
+
     public void setAppointments(List<Appointment> appointments) {
         this.appointments = appointments;
     }

@@ -22,15 +22,9 @@ import javax.validation.constraints.Size;
  * @author amith
  */
 @Entity
-public class Staff {
+public class Staff extends AbstractNamedEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    @NotBlank
-    @Size(min = 4, max = 40)
-    private String name;
+  
 
     @NotBlank
     private String department;
@@ -85,42 +79,7 @@ public class Staff {
         this.department = department;
     }
 
-    /**
-     * Get the value of name
-     *
-     * @return the value of name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Set the value of name
-     *
-     * @param name new value of name
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * Get the value of id
-     *
-     * @return the value of id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * Set the value of id
-     *
-     * @param id new value of id
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+   
     @Override
     public String toString() {
         return "Staff{" + "id=" + id + ", name=" + name + ", department=" + department + ", phone=" + phone + '}';

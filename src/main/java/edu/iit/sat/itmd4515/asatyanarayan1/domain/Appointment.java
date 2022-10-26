@@ -19,11 +19,9 @@ import javax.validation.constraints.Future;
  * @author amith
  */
 @Entity
-public class Appointment {
+public class Appointment extends AbstarctEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
     
     @Future
     private LocalDate appointDate;
@@ -60,23 +58,6 @@ public class Appointment {
         this.appointTime = appointTime;
     }
 
-    /**
-     * Get the value of id
-     *
-     * @return the value of id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * Set the value of id
-     *
-     * @param id new value of id
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     @Override
     public String toString() {
