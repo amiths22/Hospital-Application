@@ -7,6 +7,8 @@ package edu.iit.sat.itmd4515.asatyanarayan1.domain;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
@@ -47,15 +49,23 @@ public class PatientRelationshipTest extends AbstractJPATest {
     }
     
     @Test
-    public void testManyToOneUniDirDoctorStaffRelationship() {
-        
+    public void testManyToOneUniDirPatientAppointmentRelationship() {
+      
         Patient p=new Patient("amith",PatientGender.Male,LocalDate.of(1998, Month.MARCH, 22),"hassan");
+        Doctor d=new Doctor("amith","surgery",5,"hassan");
+
         Appointment a = new Appointment(LocalDate.of(2023, Month.MARCH, 1),LocalTime.of(4, 0));
         
+        a.setPatient(p);
+        a.setDoctor(d);
         p.getAppointments().add(a);
+
         
-         tx.begin();
+        //List<Appointment> appointments = new ArrayList<>();
+       // appointments.add(p);
+        tx.begin();
         em.persist(p);
+        em.persist(d);
         em.persist(a);
         tx.commit();
         
@@ -66,7 +76,35 @@ public class PatientRelationshipTest extends AbstractJPATest {
         tx.begin();
         p.getAppointments().remove(a);
         em.remove(p);
+        em.remove(d);
         em.remove(a);
         tx.commit();
     }
+    /* @Test
+    public void testManyToOneUniDirDoctorAppointmentRelationship() {
+      
+        Doctor d=new Doctor("amith","surgery",5,"hassan");
+        Appointment a = new Appointment(LocalDate.of(2023, Month.MARCH, 1),LocalTime.of(4, 0));
+        
+        a.setDoctor(d);
+        p.getAppointments().add(a);
+
+        
+        //List<Appointment> appointments = new ArrayList<>();
+       // appointments.add(p);
+        tx.begin();
+        em.persist(p);
+        em.persist(a);
+        tx.commit();
+        
+        System.out.println("Navigating the relationship from the owning side" + p.getAppointments().toString());
+        
+        assertTrue(p.getAppointments().size() == 1);
+        
+       /* tx.begin();
+        p.getAppointments().remove(a);
+        em.remove(p);
+        em.remove(a);
+        tx.commit();
+    }*/
 }
