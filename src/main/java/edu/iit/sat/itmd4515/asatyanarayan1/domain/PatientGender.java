@@ -9,5 +9,24 @@ package edu.iit.sat.itmd4515.asatyanarayan1.domain;
  * @author amith
  */
 public enum PatientGender {
-    Male,Female
+    Male("Male"),
+    Female("Female");
+   
+    private String description;
+
+    private PatientGender(String description) {
+        this.description = description;
+    }
+    
+
+    /**
+     * Get the value of description
+     *
+     * @return the value of description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+
 }

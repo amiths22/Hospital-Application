@@ -92,10 +92,11 @@ public class StartupSampleDataService {
         Appointment a2 = new Appointment(LocalDate.of(2023, Month.APRIL, 1), LocalTime.of(10, 00));
         a2.addAppt(p3, d1);
         Appointment a3 = new Appointment(LocalDate.of(2023, Month.JUNE, 1), LocalTime.of(10, 00));
-        a2.addAppt(p2, d2);
+        a3.addAppt(p2, d2);
 
         apptSvc.create(a1);
         apptSvc.create(a2);
+        apptSvc.create(a3);
 
         for (Patient p : patSvc.findAll()) {
             LOG.info("Patient---------------->" + p.toString());
@@ -105,10 +106,12 @@ public class StartupSampleDataService {
             LOG.info("Doctor------------>" + d.toString());
 
             for (Staff s : d.getStaffs()) {
-                LOG.info("\t-------------->" + s.toString());
+                LOG.info("\t\t-------------->" + s.toString());
             }
             for (Appointment a : d.getAppointments()) {
-                LOG.info("\t-------------->" + a.toString());
+                LOG.info("\t\t-------------->" + a.toString());
+                LOG.info("\t\t\t-------------->" + a.getPatient().toString());
+                LOG.info("\t\t\t-------------->" + a.getDoctor().toString());
 
             }
         }

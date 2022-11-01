@@ -27,8 +27,8 @@ import javax.validation.constraints.Size;
  * @author amith
  */
 @Entity
-@NamedQuery(name="Patient.findByName",query="select p from Patient p WHERE p.name=:NAME")
-@NamedQuery(name="Patient.findAll",query="select p from Patient p")
+@NamedQuery(name = "Patient.findByName", query = "select p from Patient p WHERE p.name=:NAME")
+@NamedQuery(name = "Patient.findAll", query = "select p from Patient p")
 public class Patient extends AbstarctEntity {
 
     @NotBlank
@@ -38,9 +38,11 @@ public class Patient extends AbstarctEntity {
     @Enumerated(EnumType.STRING)
     private PatientGender gender;
 
+    
     @PastOrPresent
     private LocalDate dob;
 
+    
     private String address;
 
     @OneToMany(mappedBy = "patient")

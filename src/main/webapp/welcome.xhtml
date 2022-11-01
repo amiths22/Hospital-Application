@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Patient Form</title>
+    </h:head>
+    <h:body>
+        <h1> Create a new patient</h1>
+
+        <h:form>
+
+            <h:panelGroup layout="block">
+                <h:outputLabel for="patientName" value="patientName"/>
+                <h:inputText id="patientName" p:placeholder="Patient Name" value="#{patientController.patient.name}"/>
+                <h:messages for="patientName"/> 
+            </h:panelGroup>
+            <br/>
+            <h:panelGroup layout="block">
+                <h:outputLabel for="patientDob" value="patientDob"/>
+                <h:inputText id="patientDob" p:type="date" value="#{patientController.patient.dob}">
+                    <f:convertDateTime type="localDate" pattern="yyyy-MM-dd"/>
+                </h:inputText>
+                <h:messages for="patientDob"/> 
+
+            </h:panelGroup>
+            <br/>
+            <h:panelGroup layout="block">
+                <h:outputLabel for="patientGender" value="patientGender"/>
+                <h:selectOneMenu id="patientGender" value="#{patientController.patient.gender}">
+
+                    <f:selectItems value="#{patientController.allGenders}"
+                                   var="patientGender"
+                                   itemLabel="#{patientGender.description}"
+                                   itemValue="#{patientGender}"/>   
+                </h:selectOneMenu>
+
+            </h:panelGroup>
+            <br/>
+            <h:panelGroup layout="block">
+                <h:outputLabel for="patientAddress" value="Patient Address"/>
+                <h:inputText id="patientAddress" p:placeholder="Patient Address"  value="#{patientController.patient.address}"/>
+                <h:messages for="patientAddress"/> 
+
+            </h:panelGroup>
+            <br/>
+            <h:commandButton value="Create Patient" action="#{patientController.savePatient()}"/>
+        </h:form>
+
+    </h:body>
+</html>
+
