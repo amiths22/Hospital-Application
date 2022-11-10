@@ -9,6 +9,10 @@ import edu.iit.sat.itmd4515.asatyanarayan1.domain.Doctor;
 import edu.iit.sat.itmd4515.asatyanarayan1.domain.Patient;
 import edu.iit.sat.itmd4515.asatyanarayan1.domain.PatientGender;
 import edu.iit.sat.itmd4515.asatyanarayan1.domain.Staff;
+import edu.iit.sat.itmd4515.asatyanarayan1.security.Group;
+import edu.iit.sat.itmd4515.asatyanarayan1.security.GroupService;
+import edu.iit.sat.itmd4515.asatyanarayan1.security.User;
+import edu.iit.sat.itmd4515.asatyanarayan1.security.UserService;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
@@ -41,13 +45,50 @@ public class StartupSampleDataService {
     private StaffService stSvc;
     @EJB
     private AppointmentService apptSvc;
+    @EJB
+    private UserService userSvc;
+    @EJB
+    private GroupService grpSvc;
 
     public StartupSampleDataService() {
     }
 
     @PostConstruct
     private void postConstruct() {
-        //
+
+        Group patientGroup = new Group("Patient_Group", "This group represent the patients");
+        Group doctorGroup = new Group("Doctor_Group", "This group represent the doctors");
+        Group adminGroup = new Group("Admin_Group", "This group represent the admins");
+        Group staffGroup = new Group("Staff_Group", "This group represent the staffs");
+        grpSvc.create(adminGroup);
+        grpSvc.create(patientGroup);
+        grpSvc.create(doctorGroup);
+        grpSvc.create(staffGroup);
+
+        User admin = new User("admin", "admin", true);
+        admin.addGroup(adminGroup);
+        userSvc.create(admin);
+        User doctor1 = new User("doctor1", "doctor1", true);
+        User doctor2 = new User("doctor2", "doctor2", true);
+        doctor1.addGroup(doctorGroup);
+        doctor1.addGroup(adminGroup);
+        doctor2.addGroup(doctorGroup);
+        userSvc.create(doctor1);
+        userSvc.create(doctor2);
+
+        User patient1 = new User("patient1", "patient1", true);
+        patient1.addGroup(patientGroup);
+        userSvc.create(patient1);
+        User patient2 = new User("patient2", "patient2", true);
+        patient2.addGroup(patientGroup);
+        userSvc.create(patient2);
+
+        User staff1 = new User("staff1", "staff1", true);
+        staff1.addGroup(staffGroup);
+        staff1.addGroup(adminGroup);
+        userSvc.create(staff1);
+
+        // 
         LOG.info("Inside StartupSampleDataService.postConstruct method");
 
         // First step to create data for entities that dont own relationship

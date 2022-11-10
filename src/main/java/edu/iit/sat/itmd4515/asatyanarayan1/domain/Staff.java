@@ -4,6 +4,7 @@
  */
 package edu.iit.sat.itmd4515.asatyanarayan1.domain;
 
+import edu.iit.sat.itmd4515.asatyanarayan1.security.User;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -15,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -35,6 +37,9 @@ public class Staff extends AbstractNamedEntity{
 
     @ManyToMany(mappedBy = "staffs")
     private List<Doctor> doctors=  new ArrayList<>();
+    
+    @OneToOne
+    private User user;
 
     public Staff() {
     }

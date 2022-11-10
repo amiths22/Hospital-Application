@@ -4,6 +4,7 @@
  */
 package edu.iit.sat.itmd4515.asatyanarayan1.domain;
 
+import edu.iit.sat.itmd4515.asatyanarayan1.security.User;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -16,6 +17,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -24,16 +26,14 @@ import javax.validation.constraints.Size;
  * @author amith
  */
 @Entity
-@NamedQuery(name="Doctor.findAll",query="select d from Doctor d")
-public class Doctor extends AbstractNamedEntity{
+@NamedQuery(name = "Doctor.findAll", query = "select d from Doctor d")
+public class Doctor extends AbstractNamedEntity {
 
-   
-    
     @NotBlank
     private String specialization;
 
     private Integer phone;
-    
+
     @NotBlank
     private String address;
 
@@ -41,17 +41,16 @@ public class Doctor extends AbstractNamedEntity{
     @OneToMany(mappedBy = "doctor")
     private List<Appointment> appointments = new ArrayList<>();
 
-    
     @ManyToMany
     @JoinTable(name = "DOCTOR_STAFF",
-        joinColumns = @JoinColumn(name = "DOCTOR_ID"),
-        inverseJoinColumns = @JoinColumn(name = "STAFF_ID"))
+            joinColumns = @JoinColumn(name = "DOCTOR_ID"),
+            inverseJoinColumns = @JoinColumn(name = "STAFF_ID"))
     private List<Staff> staffs = new ArrayList<>();
+    @OneToOne
+    private User user;
 
     public Doctor() {
     }
-
-
 
     public Doctor(String name, String stream, Integer phone, String address) {
         this.name = name;
@@ -59,7 +58,7 @@ public class Doctor extends AbstractNamedEntity{
         this.phone = phone;
         this.address = address;
     }
-    
+
     public void addStaff(Staff s) {
         if (!this.staffs.contains(s)) {
             this.staffs.add(s);
@@ -68,7 +67,7 @@ public class Doctor extends AbstractNamedEntity{
             s.getDoctors().add(this);
         }
     }
-    
+
     public void removeStaff(Staff s) {
         if (this.staffs.contains(s)) {
             this.staffs.remove(s);
@@ -132,7 +131,6 @@ public class Doctor extends AbstractNamedEntity{
         this.specialization = stream;
     }
 
-    
     @Override
     public String toString() {
         return "Doctor{" + "id=" + id + ", name=" + name + ", stream=" + specialization + ", phone=" + phone + ", address=" + address + '}';
@@ -170,12 +168,21 @@ public class Doctor extends AbstractNamedEntity{
     public void setAppointments(List<Appointment> appointments) {
         this.appointments = appointments;
     }
+
     public List<Staff> getStaffs() {
         return staffs;
     }
+
     public void setStaffs(List<Staff> staffs) {
         this.staffs = staffs;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
 }

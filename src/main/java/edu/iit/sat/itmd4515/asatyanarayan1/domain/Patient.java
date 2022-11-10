@@ -4,6 +4,7 @@
  */
 package edu.iit.sat.itmd4515.asatyanarayan1.domain;
 
+import edu.iit.sat.itmd4515.asatyanarayan1.security.User;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
@@ -49,7 +51,8 @@ public class Patient extends AbstarctEntity {
     //private List<Appointment> appointments = new ArrayList<>();
     private List<Appointment> appointments = new ArrayList<>();
 
-    ;
+    @OneToOne
+    private User user;
     
 
     public Patient(String name, PatientGender gender, LocalDate dob, String address) {
