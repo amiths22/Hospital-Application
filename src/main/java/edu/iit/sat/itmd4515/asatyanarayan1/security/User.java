@@ -22,18 +22,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "sec_user")
 @EntityListeners(UserListener.class)
-@NamedQuery(name="User.findAll",query="select u from User u")
+@NamedQuery(name = "User.findAll", query = "select u from User u")
 public class User {
 
     @Id
     private String userName;
     private String password;
     private Boolean enabled;
-    
+
     @ManyToMany
-    @JoinTable(name="sec_user_groups",
-            joinColumns = @JoinColumn(name="USERNAME"),
-            inverseJoinColumns = @JoinColumn(name="GROUPNAME"))
+    @JoinTable(name = "sec_user_groups",
+            joinColumns = @JoinColumn(name = "USERNAME"),
+            inverseJoinColumns = @JoinColumn(name = "GROUPNAME"))
     private List<Group> groups = new ArrayList<>();
 
     public User() {
@@ -44,16 +44,26 @@ public class User {
         this.password = password;
         this.enabled = enabled;
     }
-    
-    public void addGroup(Group g){
-        this.groups.add(g);
-        g.getUsers().add(this);
-                
+
+    public void addGroup(Group g) {
+
+        if (!this.groups.contains(g)) {
+            this.groups.add(g);
+        }
+        if (!g.getUsers().contains(this)) {
+            g.getUsers().add(this);
+        }
+
     }
-    
-    public void removeGroup(Group g){
-        this.groups.remove(g);
-        g.getUsers().remove(this);
+
+    public void removeGroup(Group g) {
+
+        if (this.groups.contains(g)) {
+            this.groups.remove(g);
+        }
+        if (g.getUsers().contains(this)) {
+            g.getUsers().remove(this);
+        }
     }
 
     /**
