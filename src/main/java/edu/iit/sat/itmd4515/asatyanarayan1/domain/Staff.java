@@ -25,10 +25,8 @@ import javax.validation.constraints.Size;
  * @author amith
  */
 @Entity
-@NamedQuery(name="Staff.findAll",query="select s from Staff s")
-public class Staff extends AbstractNamedEntity{
-
-  
+@NamedQuery(name = "Staff.findAll", query = "select s from Staff s")
+public class Staff extends AbstractNamedEntity {
 
     @NotBlank
     private String department;
@@ -36,9 +34,10 @@ public class Staff extends AbstractNamedEntity{
     private Integer phone;
 
     @ManyToMany(mappedBy = "staffs")
-    private List<Doctor> doctors=  new ArrayList<>();
-    
+    private List<Doctor> doctors = new ArrayList<>();
+
     @OneToOne
+    @JoinColumn(name = "USERNAME")
     private User user;
 
     public Staff() {
@@ -86,7 +85,6 @@ public class Staff extends AbstractNamedEntity{
         this.department = department;
     }
 
-   
     @Override
     public String toString() {
         return "Staff{" + "id=" + id + ", name=" + name + ", department=" + department + ", phone=" + phone + '}';
@@ -123,6 +121,14 @@ public class Staff extends AbstractNamedEntity{
 
     public void setDoctors(List<Doctor> doctors) {
         this.doctors = doctors;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }

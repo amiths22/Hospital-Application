@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"/>
+
+        <title>Patient Form</title>
+    </h:head>
+    <h:body>
+        <h1> Create a new patient</h1>
+
+        <h:form>
+
+            <h:panelGroup layout="block" styleClass="mb-3">
+                <h:outputLabel for="patientName" value="patientName" styleClass="form-label"/>
+                <h:inputText id="patientName" styleClass="form-control" p:placeholder="Patient Name" value="#{patientController.patient.name}"/>
+                <h:messages for="patientName"/> 
+            </h:panelGroup>
+            <br/>
+            <h:panelGroup layout="block" styleClass="mb-3">
+                <h:outputLabel for="patientDob" value="patientDob" styleClass="form-label"/>
+                <h:inputText id="patientDob" styleClass="form-control" p:type="date" value="#{patientController.patient.dob}">
+                    <f:convertDateTime type="localDate" pattern="yyyy-MM-dd"/>
+                </h:inputText>
+                <h:messages for="patientDob"/> 
+
+            </h:panelGroup>
+            <br/>
+            <h:panelGroup layout="block" styleClass="mb-3">
+                <h:outputLabel for="patientGender" value="patientGender" styleClass="form-label"/>
+                <h:selectOneMenu id="patientGender" styleClass="form-control" value="#{patientController.patient.gender}">
+
+                    <f:selectItems value="#{patientController.allGenders}"
+                                   var="patientGender"
+                                   itemLabel="#{patientGender.description}"
+                                   itemValue="#{patientGender}"/>   
+                </h:selectOneMenu>
+
+            </h:panelGroup>
+            <br/>
+            <h:panelGroup layout="block" styleClass="mb-3">
+                <h:outputLabel for="patientAddress" value="Patient Address" styleClass="form-label" />
+                <h:inputText id="patientAddress" styleClass="form-control" p:placeholder="Patient Address"  value="#{patientController.patient.address}"/>
+                <h:messages for="patientAddress"/> 
+
+            </h:panelGroup>
+            <br/>
+            <h:commandButton styleClass="btn btn-primary mb-3" value="Create Patient" action="#{patientController.savePatient()}"/>
+        </h:form>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+    </h:body>
+</html>
+

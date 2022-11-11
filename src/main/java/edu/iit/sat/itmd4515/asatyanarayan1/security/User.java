@@ -7,6 +7,7 @@ package edu.iit.sat.itmd4515.asatyanarayan1.security;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -20,6 +21,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "sec_user")
+@EntityListeners(UserListener.class)
 @NamedQuery(name="User.findAll",query="select u from User u")
 public class User {
 

@@ -10,6 +10,43 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>welcome.xhtml</welcome-file>
+        <welcome-file>login.xhtml</welcome-file>
     </welcome-file-list>
+    
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Admin content</web-resource-name>
+            <url-pattern>/admin/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN_ROLE</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Patient content</web-resource-name>
+            <url-pattern>/patient/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>PATIENT_ROLE</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Doctor content</web-resource-name>
+            <url-pattern>/doctor/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>DOCTOR_ROLE</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Staff content</web-resource-name>
+            <url-pattern>/staff/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>STAFF_ROLE</role-name>
+        </auth-constraint>
+    </security-constraint>
 </web-app>

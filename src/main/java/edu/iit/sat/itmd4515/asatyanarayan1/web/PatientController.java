@@ -46,7 +46,7 @@ public class PatientController {
         
         patSvc.create(patient);
         
-        return "confirmation.xhtml"; 
+        return "/patient/CreatePatientConfirmation.xhtml"; 
 
     }
     public Patient getPatient() {

@@ -47,6 +47,7 @@ public class Doctor extends AbstractNamedEntity {
             inverseJoinColumns = @JoinColumn(name = "STAFF_ID"))
     private List<Staff> staffs = new ArrayList<>();
     @OneToOne
+    @JoinColumn(name = "USERNAME")
     private User user;
 
     public Doctor() {

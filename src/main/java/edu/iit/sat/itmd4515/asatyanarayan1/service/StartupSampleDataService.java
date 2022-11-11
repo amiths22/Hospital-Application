@@ -21,9 +21,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import org.eclipse.persistence.config.TargetDatabase;
+
 
 /**
  *
@@ -56,10 +54,10 @@ public class StartupSampleDataService {
     @PostConstruct
     private void postConstruct() {
 
-        Group patientGroup = new Group("Patient_Group", "This group represent the patients");
-        Group doctorGroup = new Group("Doctor_Group", "This group represent the doctors");
-        Group adminGroup = new Group("Admin_Group", "This group represent the admins");
-        Group staffGroup = new Group("Staff_Group", "This group represent the staffs");
+        Group patientGroup = new Group("PATIENT_GROUP", "This group represent the patients");
+        Group doctorGroup = new Group("DOCTOR_GROUP", "This group represent the doctors");
+        Group adminGroup = new Group("ADMIN_GROUP", "This group represent the admins");
+        Group staffGroup = new Group("STAFF_GROUP", "This group represent the staffs");
         grpSvc.create(adminGroup);
         grpSvc.create(patientGroup);
         grpSvc.create(doctorGroup);
@@ -87,6 +85,9 @@ public class StartupSampleDataService {
         staff1.addGroup(staffGroup);
         staff1.addGroup(adminGroup);
         userSvc.create(staff1);
+        User staff2 = new User("staff2", "staff2", true);
+        staff2.addGroup(staffGroup);
+        userSvc.create(staff2);
 
         // 
         LOG.info("Inside StartupSampleDataService.postConstruct method");
@@ -98,6 +99,7 @@ public class StartupSampleDataService {
         Staff s4 = new Staff("BWK", "Receptionist", 12345);
         Staff s5 = new Staff("AWK", "Nurse", 12345);
         stSvc.create(s1);
+        s1.setUser(staff1);
         stSvc.create(s2);
         stSvc.create(s3);
         stSvc.create(s4);
@@ -113,7 +115,9 @@ public class StartupSampleDataService {
         Patient p2 = new Patient("Ankitha", PatientGender.Female, LocalDate.of(1996, 05, 23), "Banglore");
         Patient p3 = new Patient("Karthik", PatientGender.Male, LocalDate.of(1997, 01, 21), "Hassan");
         patSvc.create(p1);
+        p1.setUser(patient1);
         patSvc.create(p2);
+        p2.setUser(patient2);
         patSvc.create(p3);
 
         //second step is to create data for entities that own relationship
@@ -126,7 +130,9 @@ public class StartupSampleDataService {
         d2.addStaff(s4);
 
         docSvc.create(d1);
+        d1.setUser(doctor1);
         docSvc.create(d2);
+        d2.setUser(doctor2);
 
         Appointment a1 = new Appointment(LocalDate.of(2023, Month.MARCH, 1), LocalTime.of(9, 0));
         a1.addAppt(p1, d1);

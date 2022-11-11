@@ -16,6 +16,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -50,8 +51,8 @@ public class Patient extends AbstarctEntity {
     @OneToMany(mappedBy = "patient")
     //private List<Appointment> appointments = new ArrayList<>();
     private List<Appointment> appointments = new ArrayList<>();
-
     @OneToOne
+    @JoinColumn(name="USERNAME")    
     private User user;
     
 
@@ -61,6 +62,8 @@ public class Patient extends AbstarctEntity {
         this.dob = dob;
         this.address = address;
     }
+
+
 
     public Patient() {
     }
@@ -173,6 +176,12 @@ public class Patient extends AbstarctEntity {
 
     public void setAppointments(List<Appointment> appointments) {
         this.appointments = appointments;
+    }
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }
