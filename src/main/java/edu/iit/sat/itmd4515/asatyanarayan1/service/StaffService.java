@@ -12,6 +12,7 @@ import javax.ejb.Stateless;
  *
  * @author amith
  */
+
 @Stateless
 public class StaffService extends AbstractService<Staff> {
 

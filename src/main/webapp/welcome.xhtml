@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./WEB-INF/templates/pageTemplate.xhtml"
@@ -14,16 +14,7 @@
         <h1>#{loginController.authenticatedUser}</h1>
         Welcome to the Hospital application.
 
-        <h:form>
-        <ul>
-            <li><h:link outcome="/welcome.xhtml">Home</h:link></li>
-            <li><h:link outcome="/admin/welcome.xhtml">Admin</h:link></li>
-            <li><h:link outcome="/doctor/welcome.xhtml">Doctor</h:link></li>
-            <li><h:link outcome="/patient/welcome.xhtml">Patient</h:link></li>
-            <li><h:link outcome="/staff/welcome.xhtml">Staff</h:link></li>
-            <li><h:commandLink action="#{loginController.doLogout()}" value="Logout"/></li>
-        </ul>
-        </h:form>
+        
     </ui:define>
 
 </ui:composition>

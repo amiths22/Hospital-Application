@@ -54,6 +54,20 @@ public class LoginController {
         //return securityContext.getCallerPrincipal().getName();
         return facesContext.getExternalContext().getRemoteUser();
     }
+    public boolean isAdmin(){
+        return securityContext.isCallerInRole("ADMIN_ROLE"); 
+    }
+     public boolean isDoctor(){
+        return securityContext.isCallerInRole("DOCTOR_ROLE"); 
+    }
+      public boolean isPatient(){
+        return securityContext.isCallerInRole("PATIENT_ROLE"); 
+    }
+       public boolean isStaff(){
+        return securityContext.isCallerInRole("STAFF_ROLE"); 
+    }
+    
+    
     public String doLogin() {
         LOG.info("Inside dologin " + this.user.getUserName());
 

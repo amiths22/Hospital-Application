@@ -7,11 +7,13 @@ package edu.iit.sat.itmd4515.asatyanarayan1.service;
 import edu.iit.sat.itmd4515.asatyanarayan1.domain.Patient;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Named;
 
 /**
  *
  * @author amith
  */
+@Named
 @Stateless
 public class PatientService extends AbstractService<Patient> {
 
