@@ -42,5 +42,12 @@ public class DoctorService {
     public List<Doctor> findAll(){
         return em.createNamedQuery("Doctor.findAll", Doctor.class).getResultList();
     }
+    
+    public Doctor findByUsername(String username){
+        return em
+                .createNamedQuery("Doctor.findByUsername",Doctor.class)
+                .setParameter("username", username)
+                .getSingleResult();
+    }
 
 }
