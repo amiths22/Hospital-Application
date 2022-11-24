@@ -25,16 +25,25 @@ public class DoctorWelcomeController {
 
     //model- To find all the staffworking under the doctor
     private Doctor doctor;
-    
-    @Inject LoginController loginController;
-    @EJB DoctorService docSvc;
+
+    @Inject
+    LoginController loginController;
+    @EJB
+    DoctorService docSvc;
+
     public DoctorWelcomeController() {
     }
+
     @PostConstruct
-    public void postConstruct(){
+    public void postConstruct() {
         LOG.info("Inside DoctorWelcomeController.postConstruct ");
-        doctor=docSvc.findByUsername(loginController.getAuthenticatedUser());
-        LOG.info("Leaving Doctor welcomeController.postconstruct with"+ doctor.toString());
+        doctor = docSvc.findByUsername(loginController.getAuthenticatedUser());
+        LOG.info("Leaving Doctor welcomeController.postconstruct with" + doctor.toString());
+    }
+
+    //utility method
+    public void refreshDoctor() {
+        doctor = docSvc.findByUsername(loginController.getAuthenticatedUser());
     }
 
     /**
@@ -55,6 +64,4 @@ public class DoctorWelcomeController {
         this.doctor = doctor;
     }
 
-    
-    
 }

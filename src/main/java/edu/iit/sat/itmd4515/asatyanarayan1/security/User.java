@@ -14,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 /**
  *
@@ -26,7 +27,9 @@ import javax.persistence.Table;
 public class User {
 
     @Id
+    @NotBlank(message="Username Required!")
     private String userName;
+    @NotBlank(message="Password Required!")
     private String password;
     private Boolean enabled;
 

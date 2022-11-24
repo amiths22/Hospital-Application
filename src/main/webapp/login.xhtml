@@ -16,18 +16,25 @@
                 <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
                 <h:panelGroup layout="block" class="form-floating">
-                    <h:inputText styleClass="form-control"
-                                 id="username"
-                                 value="#{loginController.user.userName}"
-                                 p:placeholder="Username"/>
+                    <h:inputText 
+                        binding="#{username}"
+                        styleClass="#{username.valid ? 'form-control':'form-control is-invalid'}"
+                        id="username"
+                        value="#{loginController.user.userName}"
+                        p:placeholder="Username"/>
                     <h:outputLabel for="username" value="Username"/>
+                    <h:messages for="username" styleClass="text-danger"/>
                 </h:panelGroup>
                 <h:panelGroup layout="block" class="form-floating">
-                    <h:inputSecret styleClass="form-control"
-                                   id="password"
-                                   value="#{loginController.user.password}"
-                                   p:placeholder="Password"/>
+                    <h:inputSecret
+                        binding="#{pass}"
+                        styleClass="#{pass.valid ? 'form-control':'form-control is-invalid'}"
+                        id="password"
+                        value="#{loginController.user.password}"
+                        p:placeholder="Password"/>
                     <h:outputLabel for="password" value="Password"/>
+                    <h:messages for="password" styleClass="text-danger"/>
+
 
                 </h:panelGroup>
                 <h:commandButton styleClass="w-100 btn btn-lg btn-primary" value="Login" action="#{loginController.doLogin()}"/>

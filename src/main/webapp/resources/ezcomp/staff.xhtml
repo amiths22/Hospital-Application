@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="operation" type="java.lang.String" required="true" />
+        <cc:attribute name="staff" type="edu.iit.sat.itmd4515.asatyanarayan1.domain.Staff" required="true" />
+        <cc:attribute name="action" required="false" method-signature="java.lang.String action()" />
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h:form>
+            <h:panelGroup rendered="#{not cc.attrs.operation.equalsIgnoreCase('create')}" layout="block" styleClass="mb-3">
+                <h:outputLabel for="staffId" value="staff ID #{cc.attrs.staff.id} " styleClass="form-label"/>
+                <h:inputHidden
+                    id="staffId"
+                    value="#{cc.attrs.staff.id}"/>
+                <h:messages for="staffId"/> 
+            </h:panelGroup>
+            <br/>
+            <h:panelGroup layout="block" styleClass="mb-3">
+                <h:outputLabel for="staffName" value="staffName" styleClass="form-label"/>
+                <h:inputText 
+                    readonly="#{cc.attrs.operation.equalsIgnoreCase('read') or cc.attrs.operation.equalsIgnoreCase('delete')}"
+                    id="staffName"
+                    styleClass="form-control"
+                    p:placeholder="Staff Name"
+                    value="#{cc.attrs.staff.name}"/>
+                <h:messages for="staffName"/> 
+            </h:panelGroup>
+            <br/>
+            <h:panelGroup layout="block" styleClass="mb-3">
+                <h:outputLabel for="staffDepartment" value="Staff Department" styleClass="form-label" />
+                <h:inputText 
+                    readonly="#{cc.attrs.operation.equalsIgnoreCase('read') or cc.attrs.operation.equalsIgnoreCase('delete')}"
+                    id="staffDepartment" 
+                    styleClass="form-control" 
+                    p:placeholder="Department"  
+                    value="#{cc.attrs.staff.department}"/>
+                <h:messages for="staffDepartment"/> 
+
+            </h:panelGroup>
+            <br/>
+            <h:panelGroup layout="block" styleClass="mb-3">
+                <h:outputLabel for="staffPhone" value="Staff Phone" styleClass="form-label" />
+                <h:inputText
+                    readonly="#{cc.attrs.operation.equalsIgnoreCase('read') or cc.attrs.operation.equalsIgnoreCase('delete')}"
+                    id="staffPhone" 
+                    styleClass="form-control" 
+                    p:placeholder="Phone"  
+                    value="#{cc.attrs.staff.phone}"/>
+                <h:messages for="staffPhone"/> 
+
+            </h:panelGroup>
+            <br/>
+            <h:commandButton
+                rendered="#{cc.attrs.operation.equalsIgnoreCase('create')}"
+                styleClass="btn btn-primary mb-3" 
+                value="Create Staff" 
+                action="#{cc.attrs.action}"/>
+
+            <h:commandButton
+                rendered="#{cc.attrs.operation.equalsIgnoreCase('update')}"
+                styleClass="btn btn-primary mb-3" 
+                value="Update Staff" 
+                action="#{cc.attrs.action}"/>
+
+            <h:commandButton
+                rendered="#{cc.attrs.operation.equalsIgnoreCase('delete')}"
+                styleClass="btn btn-primary mb-3" 
+                value="Delete Staff" 
+                action="#{cc.attrs.action}"/>
+        </h:form>
+    </cc:implementation>
+</html>
