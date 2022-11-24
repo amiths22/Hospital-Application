@@ -5,6 +5,7 @@
 package edu.iit.sat.itmd4515.asatyanarayan1.web;
 
 import edu.iit.sat.itmd4515.asatyanarayan1.domain.Staff;
+import edu.iit.sat.itmd4515.asatyanarayan1.service.DoctorService;
 import edu.iit.sat.itmd4515.asatyanarayan1.service.StaffService;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -26,7 +27,7 @@ public class DoctorNewStaffController {
     private static final Logger LOG = Logger.getLogger(DoctorNewStaffController.class.getName());
 
     @EJB
-    private StaffService staffSvc;
+    private DoctorService doctorSvc;
     @Inject
     DoctorWelcomeController doc;
 
@@ -51,7 +52,7 @@ public class DoctorNewStaffController {
     public String displayReadStaffPage(Staff s) {
 
         LOG.info("Inside displayReadStaffPage with" + this.staff.toString());
-
+ 
         this.staff = s;
         return "/doctor/readStaff.xhtml";
 
@@ -81,7 +82,7 @@ public class DoctorNewStaffController {
         //staffSvc.create(staff);
         //option 1
         //doc.getDoctor().addStaff(staff);
-        staffSvc.saveStaffForDoctor(staff, doc.getDoctor());
+        doctorSvc.createStaffForDoctor(staff, doc.getDoctor());
         
         //option2 refresh the doctor
         doc.refreshDoctor();
@@ -100,19 +101,23 @@ public class DoctorNewStaffController {
 
     public String executeUpdateButton() {
         LOG.info("Inside executeUpdateButton " + this.staff.toString());
+        
+        doctorSvc.updateStaffForDoctor(staff);
 
         //staffSvc.create(staff);
         //calling a service here
-        return "/doctor/CreateStaffConfirmation.xhtml";
+        return "/doctor/welcome.xhtml?faces-redirect=true";
 
     }
 
     public String executeDeleteButton() {
         LOG.info("Inside executeDeleteButton     " + this.staff.toString());
+        
+        doctorSvc.deleteStaffForDoctor(staff);
 
         //staffSvc.create(staff);
         // calling a service here
-        return "/doctor/CreateStaffConfirmation.xhtml";
+        return "/doctor/welcome.xhtml?faces-redirect=true";
 
     }
 

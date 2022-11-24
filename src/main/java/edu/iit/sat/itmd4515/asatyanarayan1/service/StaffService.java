@@ -27,14 +27,5 @@ public class StaffService extends AbstractService<Staff> {
         return em.createNamedQuery("Staff.findAll", Staff.class).getResultList();
     }
     
-    public void saveStaffForDoctor(Staff s, Doctor d){
-        //We know s is new entity
-        em.persist(s);
-        
-        //Doctor already exists so no need to persist
-        Doctor managedDoctorReference=em.getReference(Doctor.class, d.getId());
-        managedDoctorReference.addStaff(s);
-        em.merge(managedDoctorReference);
-    }
-
+    
 }

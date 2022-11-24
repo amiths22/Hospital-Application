@@ -58,7 +58,7 @@ public class Appointment extends AbstarctEntity {
         }
         
     }
-     public void delAppt(Patient p,Doctor d){
+     public void delAppt(){
         
         if(this.patient.getAppointments().contains(this)){
             this.patient.getAppointments().remove(this);
