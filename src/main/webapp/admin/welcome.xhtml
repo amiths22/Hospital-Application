@@ -11,8 +11,26 @@
     </ui:define>
 
     <ui:define name="content">
-        Admin content 
         
+        <h:link value="Add Doctor" outcome="createDoctor.xhtml" ></h:link>
+        <h2>List of Doctors</h2>
+        <h:dataTable class="table table-striped" value="#{doctorService.findAll()}" var="doctor">
+            <h:column>
+                <f:facet name="header"><h:outputText value="Doctor_ID"/></f:facet>
+                <h:outputText value="#{doctor.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Doctor_Name"/></f:facet>
+
+                <h:outputText value="#{doctor.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Doctor_Specialisation"/></f:facet>
+
+                <h:outputText value="#{doctor.specialization}"/>
+            </h:column>
+        </h:dataTable>
+        <br/>
         <h2>List of Patients</h2>
         <h:dataTable class="table table-striped" value="#{patientService.findAll()}" var="patient">
             <h:column>

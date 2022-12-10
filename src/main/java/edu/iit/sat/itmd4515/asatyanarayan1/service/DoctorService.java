@@ -9,6 +9,7 @@ import edu.iit.sat.itmd4515.asatyanarayan1.domain.Staff;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -16,6 +17,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author amith
  */
+@Named
 @Stateless
 public class DoctorService {
 

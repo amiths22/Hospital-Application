@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Add Doctor Page</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"/>
+        <h:outputStylesheet library="css" name="signin.css" />
+    </h:head>
+    <h:body class="text-center">
+        <main class="form-signin w-100 m-auto">
+            <h:form>
+                <h1 class="h3 mb-3 fw-normal">Create new Doctor account</h1>
+
+                <h:panelGroup layout="block" styleClass="form-floating">
+                    <h:inputText id="doctorName" 
+                                 styleClass="form-control" 
+                                 value="#{newDoctorController.doctor.name}"
+                                 p:placeholder="Patient Name" />
+
+                    <h:outputLabel for="doctorName" value="Doctor Name" />
+                    <h:messages for="doctorName" styleClass="text-danger"/>
+                </h:panelGroup>
+                <br/>
+                <h:panelGroup layout="block" styleClass="form-floating">
+                    <h:inputText id="doctorAddress"
+                                 styleClass="form-control" 
+                                 p:placeholder="Patient Address" 
+                                 value="#{newDoctorController.doctor.address}"/>
+                    <h:outputLabel for="doctorAddress" value="Doctor Address" />
+                    <h:messages for="doctorAddress" styleClass="text-danger"/> 
+
+                </h:panelGroup>
+                <br/>
+                <h:panelGroup layout="block" styleClass="form-floating">
+                    <h:inputText id="doctorSpecialisation"
+                                 styleClass="form-control" 
+                                 p:placeholder="Patient Address" 
+                                 value="#{newDoctorController.doctor.specialization}"/>
+                    <h:outputLabel for="doctorSpecialisation" value="Doctor Specialization" />
+                    <h:messages for="doctorSpecialisation" styleClass="text-danger"/> 
+
+                </h:panelGroup>
+                <br/>
+                <h:panelGroup layout="block" styleClass="form-floating">
+                    <h:inputText id="doctorPhone"
+                                 styleClass="form-control" 
+                                 p:placeholder="Patient Address" 
+                                 value="#{newDoctorController.doctor.phone}"/>
+                    <h:outputLabel for="doctorPhone" value="Doctor Phone" />
+                    <h:messages for="doctorPhone" styleClass="text-danger"/> 
+
+                </h:panelGroup>
+                <br/>
+                <h:panelGroup layout="block" styleClass="form-floating">
+                    <h:inputText id="username" 
+                                 styleClass="form-control" 
+                                 value="#{newDoctorController.doctor.user.userName}"
+                                 p:placeholder="Username" />
+
+                    <h:outputLabel for="username" value="Username" />
+                    <h:messages for="username" styleClass="text-danger"/>
+                </h:panelGroup>
+                <br/>
+
+                <h:panelGroup layout="block" styleClass="form-floating">
+                    <h:inputSecret id="password" 
+                                   styleClass="form-control" 
+                                   value="#{newDoctorController.doctor.user.password}"
+                                   p:placeholder="Password" />
+
+                    <h:outputLabel for="password" value="Password" />
+                    <h:messages for="password" styleClass="text-danger"/>
+                </h:panelGroup>
+
+                <h:commandButton styleClass="w-100 btn btn-lg btn-primary" 
+                                 value="Create" 
+                                 action="#{newDoctorController.executeNewDoctorClick()}" />
+                <h:link value="Back" outcome="/admin/welcome.xhtml"/>
+
+                <p class="mt-5 mb-3 text-muted">&copy; 2021–2022</p>
+            </h:form>
+        </main>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+    </h:body>
+</html>
+

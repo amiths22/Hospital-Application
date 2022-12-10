@@ -4,6 +4,7 @@
  */
 package edu.iit.sat.itmd4515.asatyanarayan1.security;
 
+import edu.iit.sat.itmd4515.asatyanarayan1.domain.Doctor;
 import edu.iit.sat.itmd4515.asatyanarayan1.domain.Patient;
 import edu.iit.sat.itmd4515.asatyanarayan1.service.AbstractService;
 import java.util.List;
@@ -44,5 +45,14 @@ public class UserService extends AbstractService<User>{
         em.persist(p.getUser());
         
         em.persist(p);
+    }
+    public void signupNewDoctorUser(Doctor d){
+        //
+        Group doctorGroup=em.createQuery("select g from Group g where g.groupName='DOCTOR_GROUP'", Group.class).getSingleResult();
+        d.getUser().addGroup(doctorGroup);
+        d.getUser().setEnabled(true);
+        em.persist(d.getUser());
+        
+        em.persist(d);
     }
 }

@@ -4,7 +4,8 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <ui:define name="metadata">
         <f:metadata>
@@ -25,6 +26,8 @@
                      appt="#{patientApptController.appt}" 
                      action="#{patientApptController.executeChangeButtonClick()}"
                      />
+        <h:link value="Back" outcome="/patient/welcome.xhtml"/>
+
     </ui:define>
 
 </ui:composition>
