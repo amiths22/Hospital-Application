@@ -56,10 +56,18 @@ public class NewDoctorController {
         return "/admin/welcome.xhtml?faces-redirect=true";
     }
     
-   
+    /**
+     * Get the value of Doctor
+     * @return
+     */
     public Doctor getDoctor() {
         return doctor;
     }
+
+    /**
+     * Set the value of Doctor
+     * @param doctor
+     */
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
     }

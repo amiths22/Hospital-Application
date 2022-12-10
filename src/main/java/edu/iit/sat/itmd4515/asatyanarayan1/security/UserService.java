@@ -46,6 +46,11 @@ public class UserService extends AbstractService<User>{
         
         em.persist(p);
     }
+
+    /**
+     * Helper method to add a new doctor using the admin module
+     * @param d
+     */
     public void signupNewDoctorUser(Doctor d){
         //
         Group doctorGroup=em.createQuery("select g from Group g where g.groupName='DOCTOR_GROUP'", Group.class).getSingleResult();

@@ -59,6 +59,9 @@ public class PatientApptController {
         appt.setDoctor(docSvc.read(this.appt.getDoctor().getId()));
     }
     
+    /**
+     * This method is used to initialize doctor field in appt
+     */
     public void initApptById() {
         this.appt=apptSvc.read(appt.getId());
         appt.setDoctor(docSvc.read(this.appt.getDoctor().getId()));
@@ -97,6 +100,10 @@ public class PatientApptController {
         return "/patient/welcome.xhtml";
     }
     
+    /**
+     * This is the action method which is executed when change appointment is clicked
+     * @return
+     */
     public String executeChangeButtonClick() {
         LOG.info("Inside executeChangeButtonClick with" + this.appt.toString());
         LOG.info("Inside executeChangeButtonClick with" + this.appt.getPatient().toString());
@@ -106,6 +113,11 @@ public class PatientApptController {
         patientWelcomeController.refreshPatient();
         return "/patient/welcome.xhtml";
     }
+
+    /**
+     *  This is the action method which is executed when cancel appointment is clicked
+     * @return
+     */
     public String executeCancelButtonClick() {
         LOG.info("Inside executeCancelButtonClick with" + this.appt.toString());
         LOG.info("Inside executeCancelButtonClick with" + this.appt.getPatient().toString());

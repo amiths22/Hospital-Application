@@ -52,6 +52,10 @@ public class AppointmentService extends AbstractService<Appointment> {
         em.persist(newAppt);
     }
     
+    /**
+     * Helper method to cancel the scheduled appointment
+     * @param appt
+     */
     public void cancelAppointment(Appointment appt){
         appt=em.getReference(Appointment.class, appt.getId());
         appt.delAppt();
@@ -59,6 +63,10 @@ public class AppointmentService extends AbstractService<Appointment> {
         em.remove(appt);
     }
     
+    /**
+     * Helper method to modify the scheduled appointment
+     * @param appt
+     */
     public void changeAppointment(Appointment appt){
         Appointment managedAppt = em.getReference(Appointment.class, appt.getId());
         

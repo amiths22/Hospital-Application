@@ -44,6 +44,9 @@ public class PatientWelcomeController {
 
     }
 
+    /**
+     * This method is used refresh the list of patients without a click
+     */
     public void refreshPatient() {
         patient = patSvc.findByPUsername(loginController.getAuthenticatedUser());
     }

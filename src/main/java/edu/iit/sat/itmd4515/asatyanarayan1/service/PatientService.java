@@ -37,6 +37,7 @@ public class PatientService extends AbstractService<Patient> {
     /**
      * FindByPUsername method is to find the patient in the system by giving username as a parameter
      * @param username
+     * @return 
      * @returns a single patient object 
      */
     public Patient findByPUsername(String username) {
