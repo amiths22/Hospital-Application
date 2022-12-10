@@ -141,10 +141,10 @@ public class Patient extends AbstarctEntity {
         this.name = name;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return "Patient{" + "id=" + id + ", name=" + name + ", dob=" + dob + ", address=" + address + '}';
-    }
+    }*/
 
     @Override
     public int hashCode() {
@@ -183,6 +183,11 @@ public class Patient extends AbstarctEntity {
     }
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Patient{" + "name=" + name + ", gender=" + gender + ", dob=" + dob + ", address=" + address + ", user=" + user + '}';
     }
 
 }

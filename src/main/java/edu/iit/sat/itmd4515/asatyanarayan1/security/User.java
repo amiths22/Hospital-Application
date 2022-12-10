@@ -111,4 +111,9 @@ public class User {
         this.groups = groups;
     }
 
+    @Override
+    public String toString() {
+        return "User{" + "userName=" + userName + ", enabled=" + enabled + ", groups=" + groups + '}';
+    }
+
 }

@@ -72,4 +72,9 @@ public class Group {
         this.users = users;
     }
 
+    @Override
+    public String toString() {
+        return "Group{" + "groupName=" + groupName + ", groupDesc=" + groupDesc + '}';
+    }
+
 }

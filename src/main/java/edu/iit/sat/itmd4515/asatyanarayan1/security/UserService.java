@@ -4,6 +4,7 @@
  */
 package edu.iit.sat.itmd4515.asatyanarayan1.security;
 
+import edu.iit.sat.itmd4515.asatyanarayan1.domain.Patient;
 import edu.iit.sat.itmd4515.asatyanarayan1.service.AbstractService;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -23,7 +24,15 @@ public class UserService extends AbstractService<User>{
     @Override
     public List<User> findAll() {
                 return em.createNamedQuery("User.findAll", User.class).getResultList();
-
     }
     
+    public void signupNewPatientUser(Patient p){
+        //
+        Group patientGroup=em.createQuery("select g from Group g where g.groupName='PATIENT_GROUP'", Group.class).getSingleResult();
+        p.getUser().addGroup(patientGroup);
+        p.getUser().setEnabled(true);
+        em.persist(p.getUser());
+        
+        em.persist(p);
+    }
 }
