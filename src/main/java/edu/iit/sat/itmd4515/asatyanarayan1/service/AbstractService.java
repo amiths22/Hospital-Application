@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 /**
  *
  * @author amith
- * @param <T>
+ * @param <T> It can be any entity
  */
 public abstract class AbstractService<T> {
     

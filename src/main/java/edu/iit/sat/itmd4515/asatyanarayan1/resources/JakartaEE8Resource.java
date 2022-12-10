@@ -6,7 +6,7 @@ import javax.ws.rs.core.Response;
 
 /**
  *
- * @author 
+ * @author Amith
  */
 @Path("rest")
 public class JakartaEE8Resource {

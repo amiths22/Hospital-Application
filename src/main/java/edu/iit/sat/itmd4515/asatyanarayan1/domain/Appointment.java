@@ -45,8 +45,8 @@ public class Appointment extends AbstarctEntity {
 
     /**
      * Parameterized constructor
-     * @param date
-     * @param time
+     * @param date is of type localDate
+     * @param time is of type localtime
      */
     public Appointment(LocalDate date, LocalTime time) {
         this.appointDate = date;
@@ -55,8 +55,8 @@ public class Appointment extends AbstarctEntity {
     
     /**
      * This is the helper method to create an appointment using patient and doctor parameters
-     * @param p
-     * @param d
+     * @param p is the object of patient
+     * @param d is the object of doctor
      */
     public void addAppt(Patient p,Doctor d){
         
@@ -90,7 +90,7 @@ public class Appointment extends AbstarctEntity {
 
     /**
      * Getter method for appointment date
-     * @return
+     * @return date
      */
     public LocalDate getAppointDate() {
         return appointDate;
@@ -98,7 +98,7 @@ public class Appointment extends AbstarctEntity {
 
     /**
      * Setter method for appointment date
-     * @param appointDate
+     * @param appointDate is of type localDate
      */
     public void setAppointDate(LocalDate appointDate) {
         this.appointDate = appointDate;
@@ -106,7 +106,7 @@ public class Appointment extends AbstarctEntity {
 
     /**
      * Getter method for appointment time
-     * @return
+     * @return localTime
      */
     public LocalTime getAppointTime() {
         return appointTime;
@@ -114,7 +114,7 @@ public class Appointment extends AbstarctEntity {
 
     /**
      * Setter method for appointment time
-     * @param appointTime
+     * @param appointTime is of type Localtime 
      */
     public void setAppointTime(LocalTime appointTime) {
         this.appointTime = appointTime;
@@ -122,7 +122,7 @@ public class Appointment extends AbstarctEntity {
 
     /**
      * To string method to convert the object to string type
-     * @return
+     * @return String
      */
     @Override
     public String toString() {
@@ -131,7 +131,7 @@ public class Appointment extends AbstarctEntity {
 
     /**
      *
-     * @return
+     * @return ....
      */
     @Override
     public int hashCode() {
@@ -142,8 +142,8 @@ public class Appointment extends AbstarctEntity {
 
     /**
      *
-     * @param obj
-     * @return
+     * @param obj is the object
+     * @return ...
      */
     @Override
     public boolean equals(Object obj) {
@@ -165,7 +165,7 @@ public class Appointment extends AbstarctEntity {
 
     /**
      * Getter method to fetch the doctor object associated with the appointment
-     * @return
+     * @return doctor object
      */
     public Doctor getDoctor() {
         return doctor;
@@ -173,7 +173,7 @@ public class Appointment extends AbstarctEntity {
 
     /**
      * Setter method to set the doctor object to associate with the appointment
-     * @param doctor
+     * @param doctor is set
      */
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
@@ -181,7 +181,7 @@ public class Appointment extends AbstarctEntity {
 
     /**
      * Getter method to fetch the patient object associated with the appointment
-     * @return
+     * @return patient object
      */
     public Patient getPatient() {
         return patient;
@@ -189,7 +189,7 @@ public class Appointment extends AbstarctEntity {
 
     /**
      * Setter method to set the patient object to associate with the appointment
-     * @param patient
+     * @param patient is set
      */
     public void setPatient(Patient patient) {
         this.patient = patient;

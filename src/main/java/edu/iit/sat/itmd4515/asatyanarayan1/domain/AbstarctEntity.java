@@ -71,55 +71,55 @@ public class AbstarctEntity {
     /**
      * Set the value of Id
      *
-     * @param id
+     * @param id Id is the paramenter
      */
     public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     *
-     * @return
+     * Get the value of ID
+     * @return id
      */
     public Long getVersion() {
         return version;
     }
 
     /**
-     *
-     * @param version
+     * Set the value of version
+     * @param version is set
      */
     public void setVersion(Long version) {
         this.version = version;
     }
 
     /**
-     *
-     * @return
+     * Get the value of TimeStamp
+     * @return timestamp
      */
     public LocalDateTime getCreatedTimestamp() {
         return createdTimestamp;
     }
 
     /**
-     *
-     * @param createdTimestamp
+     * Set the value of TimeStamp
+     * @param createdTimestamp is set
      */
     public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
     }
 
     /**
-     *
-     * @return
+     * Get the value of UpdatedTimeStamp
+     * @return timeStamp
      */
     public LocalDateTime getUpdatedTimestamp() {
         return updatedTimestamp;
     }
 
     /**
-     *
-     * @param updatedTimestamp
+     * Set the value of UpdatedTimeStamp
+     * @param updatedTimestamp is set
      */
     public void setUpdatedTimestamp(LocalDateTime updatedTimestamp) {
         this.updatedTimestamp = updatedTimestamp;

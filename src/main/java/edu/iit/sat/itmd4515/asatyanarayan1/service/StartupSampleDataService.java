@@ -22,7 +22,6 @@ import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
-
 /**
  *
  * @author amith
@@ -71,11 +70,14 @@ public class StartupSampleDataService {
         userSvc.create(admin);
         User doctor1 = new User("doctor1", "doctor1", true);
         User doctor2 = new User("doctor2", "doctor2", true);
+        User doctor3 = new User("doctor3", "doctor3", true);
         doctor1.addGroup(doctorGroup);
         doctor1.addGroup(adminGroup);
         doctor2.addGroup(doctorGroup);
+        doctor3.addGroup(doctorGroup);
         userSvc.create(doctor1);
         userSvc.create(doctor2);
+        userSvc.create(doctor3);
 
         User patient1 = new User("patient1", "patient1", true);
         patient1.addGroup(patientGroup);
@@ -83,6 +85,9 @@ public class StartupSampleDataService {
         User patient2 = new User("patient2", "patient2", true);
         patient2.addGroup(patientGroup);
         userSvc.create(patient2);
+        User patient3 = new User("patient3", "patient3", true);
+        patient3.addGroup(patientGroup);
+        userSvc.create(patient3);
 
         User staff1 = new User("staff1", "staff1", true);
         staff1.addGroup(staffGroup);
@@ -122,13 +127,16 @@ public class StartupSampleDataService {
         patSvc.create(p2);
         p2.setUser(patient2);
         patSvc.create(p3);
+        p3.setUser(patient3);
 
         //second step is to create data for entities that own relationship
         Doctor d1 = new Doctor("Amith", "Heart", 1234567, "chicago");
-        Doctor d2 = new Doctor("Alk", "surgery", 12345, "abcd");
+        Doctor d2 = new Doctor("Almitha", "surgery", 12345, "New York");
+        Doctor d3 = new Doctor("Karthik", "Eye", 1234567891, "California");
+
         d1.addStaff(s1);
         d1.addStaff(s2);
-        d1.addStaff(s3);
+        d3.addStaff(s3);
         d2.addStaff(s5);
         d2.addStaff(s4);
 
@@ -136,6 +144,8 @@ public class StartupSampleDataService {
         d1.setUser(doctor1);
         docSvc.create(d2);
         d2.setUser(doctor2);
+        docSvc.create(d3);
+        d3.setUser(doctor3);
 
         Appointment a1 = new Appointment(LocalDate.of(2023, Month.MARCH, 1), LocalTime.of(9, 0));
         a1.addAppt(p1, d1);
@@ -143,10 +153,13 @@ public class StartupSampleDataService {
         a2.addAppt(p3, d1);
         Appointment a3 = new Appointment(LocalDate.of(2023, Month.JUNE, 1), LocalTime.of(10, 00));
         a3.addAppt(p2, d2);
+        Appointment a4 = new Appointment(LocalDate.of(2023, Month.JANUARY, 1), LocalTime.of(15, 00));
+        a4.addAppt(p3, d3);
 
         apptSvc.create(a1);
         apptSvc.create(a2);
         apptSvc.create(a3);
+        apptSvc.create(a4);
 
         for (Patient p : patSvc.findAll()) {
             LOG.info("Patient---------------->" + p.toString());
