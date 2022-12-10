@@ -4,6 +4,7 @@
  */
 package edu.iit.sat.itmd4515.asatyanarayan1.service;
 
+import edu.iit.sat.itmd4515.asatyanarayan1.domain.Doctor;
 import edu.iit.sat.itmd4515.asatyanarayan1.domain.Patient;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -27,6 +28,11 @@ public class PatientService extends AbstractService<Patient> {
         return em.createNamedQuery("Patient.findAll", Patient.class).getResultList();
     }
     
-    
+      public Patient findByPUsername(String username) {
+        return em
+                .createNamedQuery("Patient.findByPUsername", Patient.class)
+                .setParameter("username", username)
+                .getSingleResult();
+    }
     
 }

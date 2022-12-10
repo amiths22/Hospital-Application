@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="operation" type="java.lang.String" required="true" />
+        <cc:attribute name="appt" type="edu.iit.sat.itmd4515.asatyanarayan1.domain.Appointment" required="true" />
+        <cc:attribute name="action" required="false" method-signature="java.lang.String action()" />
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    
+    <cc:implementation>
+        <h:form>
+            <h:panelGroup rendered="#{not cc.attrs.operation.equalsIgnoreCase('create')}" layout="block" styleClass="mb-3">
+                <h:outputLabel for="doctorId" value="Doctor ID #{cc.attrs.appt.id} " styleClass="form-label"/>
+                <h:inputHidden
+                    id="apptId"
+                    value="#{cc.attrs.appt.id}"/>
+                <h:messages for="apptId"/> 
+            </h:panelGroup>
+            <br/>
+
+            <h:panelGroup layout="block" styleClass="mb-3">
+                <h:outputLabel for="patId" value="Appointment for Patient Name: #{cc.attrs.appt.patient.name}" styleClass="form-label" />
+                <h:inputHidden
+                    id="patId" 
+                    value="#{cc.attrs.appt.patient.id}" />
+                <h:messages for="patId" />
+            </h:panelGroup>
+            <br/>
+
+            <h:panelGroup layout="block" styleClass="mb-3">
+                <h:outputLabel for="apptDate" value="Appt Date" styleClass="form-label" />
+                <h:inputText 
+                    readonly="#{cc.attrs.operation.equalsIgnoreCase('read') or cc.attrs.operation.equalsIgnoreCase('delete')}"
+                    styleClass="form-control" 
+                    id="apptDate" 
+                    p:type="date" 
+                    value="#{cc.attrs.appt.appointDate}" >
+                    <f:convertDateTime type="localDate" pattern="yyyy-MM-dd"/>
+                </h:inputText>
+                <h:messages for="apptDate" />
+            </h:panelGroup>
+            <br/>
+
+            <h:panelGroup layout="block" styleClass="mb-3">
+                <h:outputLabel for="apptTime" value="Appt Time" styleClass="form-label" />
+                <h:inputText 
+                    readonly="#{cc.attrs.operation.equalsIgnoreCase('read') or cc.attrs.operation.equalsIgnoreCase('delete')}"
+                    styleClass="form-control" 
+                    id="apptTime" 
+                    p:type="time" 
+                    value="#{cc.attrs.appt.appointTime}" >
+                    <f:convertDateTime type="localTime" pattern="HH:mm"/>
+                </h:inputText>
+                <h:messages for="apptTime" />
+            </h:panelGroup>
+            <br/>
+                       
+            <h:commandButton 
+                rendered="#{cc.attrs.operation.equalsIgnoreCase('create')}"
+                styleClass="btn btn-primary mb-3"
+                value="Schedule" 
+                action="#{cc.attrs.action}"/>
+
+            <h:commandButton 
+                rendered="#{cc.attrs.operation.equalsIgnoreCase('update')}"
+                styleClass="btn btn-primary mb-3"
+                value="Update Appt" 
+                action="#{cc.attrs.action}"/>
+
+            <h:commandButton 
+                rendered="#{cc.attrs.operation.equalsIgnoreCase('delete')}"
+                styleClass="btn btn-primary mb-3"
+                value="Confirm Cancel Appt?" 
+                action="#{cc.attrs.action}"/>
+
+        </h:form>
+
+    </cc:implementation>
+    
+</html>

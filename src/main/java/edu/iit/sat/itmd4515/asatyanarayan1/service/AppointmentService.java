@@ -5,13 +5,17 @@
 package edu.iit.sat.itmd4515.asatyanarayan1.service;
 
 import edu.iit.sat.itmd4515.asatyanarayan1.domain.Appointment;
+import edu.iit.sat.itmd4515.asatyanarayan1.domain.Doctor;
+import edu.iit.sat.itmd4515.asatyanarayan1.domain.Patient;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Named;
 
 /**
  *
  * @author amith
  */
+@Named
 @Stateless
 public class AppointmentService extends AbstractService<Appointment> {
 
@@ -25,6 +29,16 @@ public class AppointmentService extends AbstractService<Appointment> {
         return em.createNamedQuery("Appointment.findAll", Appointment.class).getResultList();
     }
     
-    
+    public void scheduleAppointment(Appointment appt){
+        Appointment newAppt=new Appointment();
+        newAppt.setAppointDate(appt.getAppointDate());
+        newAppt.setAppointTime(appt.getAppointTime());
+        
+        Patient patientRef=em.getReference(Patient.class, appt.getPatient().getId());
+        Doctor doctorRef=em.getReference(Doctor.class, appt.getDoctor().getId());
+        
+        newAppt.addAppt(patientRef, doctorRef);
+        em.persist(newAppt);
+    }
     
 }

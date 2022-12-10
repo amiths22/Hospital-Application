@@ -5,7 +5,9 @@
 package edu.iit.sat.itmd4515.asatyanarayan1.web;
 
 import edu.iit.sat.itmd4515.asatyanarayan1.domain.Doctor;
+import edu.iit.sat.itmd4515.asatyanarayan1.domain.Staff;
 import edu.iit.sat.itmd4515.asatyanarayan1.service.DoctorService;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -20,36 +22,41 @@ import javax.inject.Named;
  */
 @Named
 @RequestScoped
-public class DoctorWelcomeController {
+public class DoctorController {
 
     private static final Logger LOG = Logger.getLogger(DoctorWelcomeController.class.getName());
 
     //model- To find all the staffworking under the doctor
     private Doctor doctor;
 
-    @Inject
-    LoginController loginController;
     @EJB
     DoctorService docSvc;
+//  private List<Doctor> doctors = new ArrayList<>();
+    private List<Doctor> doctors = new ArrayList<>();
 
-    public DoctorWelcomeController() {
+    public DoctorController() {
     }
 
     @PostConstruct
     public void postConstruct() {
-        LOG.info("Inside DoctorWelcomeController.postConstruct ");
-        doctor = docSvc.findByUsername(loginController.getAuthenticatedUser());
-        LOG.info("Leaving Doctor welcomeController.postconstruct with" + doctor.toString());
+        LOG.info("Inside DoctorController.postConstruct ");
+        doctors = docSvc.findAll();
+        LOG.info("Leaving Doctor Controller.postconstruct");
     }
 
     //utility method
-    public void refreshDoctor() {
-        doctor = docSvc.findByUsername(loginController.getAuthenticatedUser());
+    public String displayReadDoctorPage(Doctor d) {
+        this.doctor = d;
+
+        LOG.info("Inside displayReadDoctorPage with" + this.doctor.toString());
+
+        return "/patient/readDoctor.xhtml";
+
     }
 
-    public List<Doctor> findAllDoctors() {
+    /*public List<Doctor> findAllDoctors() {
         return docSvc.findAll();
-    }
+    }*/
     /**
      * Get the value of doctor
      *
@@ -66,6 +73,14 @@ public class DoctorWelcomeController {
      */
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
+    }
+
+    public List<Doctor> getDoctors() {
+        return doctors;
+    }
+
+    public void setDoctors(List<Doctor> doctors) {
+        this.doctors = doctors;
     }
 
 }

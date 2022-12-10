@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="operation" type="java.lang.String" required="true" />
+        <cc:attribute name="doctor" type="edu.iit.sat.itmd4515.asatyanarayan1.domain.Doctor" required="true" />
+        <cc:attribute name="action" required="false" method-signature="java.lang.String action()" />
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h:form>
+            <h:panelGroup rendered="#{not cc.attrs.operation.equalsIgnoreCase('create')}" layout="block" styleClass="mb-3">
+                <h:outputLabel for="doctorId" value="Doctor ID #{cc.attrs.doctor.id} " styleClass="form-label"/>
+                <h:inputHidden
+                    id="doctorId"
+                    value="#{cc.attrs.doctor.id}"/>
+                <h:messages for="doctorId"/> 
+            </h:panelGroup>
+            <br/>
+            <h:panelGroup layout="block" styleClass="mb-3">
+                <h:outputLabel for="doctorName" value="doctorName" styleClass="form-label"/>
+                <h:inputText 
+                    readonly="#{cc.attrs.operation.equalsIgnoreCase('read') or cc.attrs.operation.equalsIgnoreCase('delete')}"
+                    id="doctorName"
+                    styleClass="form-control"
+                    p:placeholder="Doctor Name"
+                    value="#{cc.attrs.doctor.name}"/>
+                <h:messages for="doctorName"/> 
+            </h:panelGroup>
+            <br/>
+            <h:panelGroup layout="block" styleClass="mb-3">
+                <h:outputLabel for="doctorPhone" value="Doctor Phone" styleClass="form-label" />
+                <h:inputText
+                    readonly="#{cc.attrs.operation.equalsIgnoreCase('read') or cc.attrs.operation.equalsIgnoreCase('delete')}"
+                    id="doctorPhone" 
+                    styleClass="form-control" 
+                    p:placeholder="Phone"  
+                    value="#{cc.attrs.doctor.phone}"/>
+                <h:messages for="doctorPhone"/> 
+
+            </h:panelGroup>
+            <br/>
+            <h:panelGroup layout="block" styleClass="mb-3">
+                <h:outputLabel for="doctorSpecialization" value="Doctor Specilaization" styleClass="form-label" />
+                <h:inputText
+                    readonly="#{cc.attrs.operation.equalsIgnoreCase('read') or cc.attrs.operation.equalsIgnoreCase('delete')}"
+                    id="doctorSpecialisation" 
+                    styleClass="form-control" 
+                    p:placeholder="Specialisation"  
+                    value="#{cc.attrs.doctor.specialization}"/>
+                <h:messages for="doctorSpecialization"/> 
+
+            </h:panelGroup>
+            <br/>
+            <h:panelGroup layout="block" styleClass="mb-3">
+                <h:outputLabel for="doctorAddress" value="Doctor Address" styleClass="form-label" />
+                <h:inputText
+                    readonly="#{cc.attrs.operation.equalsIgnoreCase('read') or cc.attrs.operation.equalsIgnoreCase('delete')}"
+                    id="doctorAddress" 
+                    styleClass="form-control" 
+                    p:placeholder="Address"  
+                    value="#{cc.attrs.doctor.address}"/>
+                <h:messages for="doctorAddress"/> 
+
+            </h:panelGroup>
+            <br/>
+
+        </h:form>
+    </cc:implementation>
+</html>

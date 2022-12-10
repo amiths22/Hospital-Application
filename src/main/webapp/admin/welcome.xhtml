@@ -29,6 +29,33 @@
                 </h:outputText>
             </h:column>
         </h:dataTable>
+        
+        <h:dataTable class="table table-striped" value="#{appointmentService.findAll()}" var="appt">
+            <h:column>
+                <f:facet name="header"><h:outputText value="Appointment_ID"/></f:facet>
+                <h:outputText value="#{appt.id}"/>
+            </h:column>
+           <h:column>
+                <f:facet name="header"><h:outputText value="Date"/></f:facet>
+                <h:outputText value="#{appt.appointDate}">
+                    <f:convertDateTime type="localDate" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Time"/></f:facet>
+                <h:outputText value="#{appt.appointTime}">
+                    <f:convertDateTime type="localTime" timeStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Patient Name"/></f:facet>
+                <h:outputText value="#{appt.patient.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Doctor Name"/></f:facet>
+                <h:outputText value="#{appt.doctor.name}"/>
+            </h:column>
+        </h:dataTable>
     </ui:define>
 
 
