@@ -48,6 +48,9 @@ public class StartupSampleDataService {
     @EJB
     private GroupService grpSvc;
 
+    /**
+     * Default Constructor
+     */
     public StartupSampleDataService() {
     }
 

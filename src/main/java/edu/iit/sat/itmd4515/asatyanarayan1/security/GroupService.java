@@ -15,14 +15,20 @@ import javax.ejb.Stateless;
 @Stateless
 public class GroupService extends AbstractService<Group> {
 
+    /**
+     * Default constructor
+     */
     public GroupService() {
         super(Group.class);
     }
 
+    /**
+     * Find all method is to find all the groups in the system
+     * @return
+     */
     @Override
     public List<Group> findAll() {
         return em.createNamedQuery("Group.findAll", Group.class).getResultList();
-
     }
 
 }

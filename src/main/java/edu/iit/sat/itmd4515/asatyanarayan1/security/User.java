@@ -39,15 +39,28 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "GROUPNAME"))
     private List<Group> groups = new ArrayList<>();
 
+    /**
+     * Default Constructor
+     */
     public User() {
     }
 
+    /**
+     * Parameterized Constructor
+     * @param userName
+     * @param password
+     * @param enabled
+     */
     public User(String userName, String password, Boolean enabled) {
         this.userName = userName;
         this.password = password;
         this.enabled = enabled;
     }
 
+    /**
+     * Helper method to add a group to the user
+     * @param g
+     */
     public void addGroup(Group g) {
 
         if (!this.groups.contains(g)) {
@@ -59,6 +72,10 @@ public class User {
 
     }
 
+    /**
+     * Helper method to delete a group from the user
+     * @param g
+     */
     public void removeGroup(Group g) {
 
         if (this.groups.contains(g)) {
@@ -87,30 +104,58 @@ public class User {
         this.userName = userName;
     }
 
+    /**
+     * Get the value of password
+     * @return
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Set the value of password
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     *  Get the value of enabled
+     * @return
+     */
     public Boolean isEnabled() {
         return enabled;
     }
 
+    /**
+     *  Set the value of enabled
+     * @param enabled
+     */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
+    /**
+     * Getter method to get the list of groups for a particular user
+     * @return
+     */
     public List<Group> getGroups() {
         return groups;
     }
 
+    /**
+     * Setter method to set the list of groups to a particular user
+     * @param groups
+     */
     public void setGroups(List<Group> groups) {
         this.groups = groups;
     }
 
+    /**
+     * Helper method to convert the object to string type
+     * @return
+     */
     @Override
     public String toString() {
         return "User{" + "userName=" + userName + ", enabled=" + enabled + ", groups=" + groups + '}';

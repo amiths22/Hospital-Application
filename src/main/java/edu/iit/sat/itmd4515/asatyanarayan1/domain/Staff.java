@@ -9,16 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -40,9 +35,18 @@ public class Staff extends AbstractNamedEntity {
     @JoinColumn(name = "USERNAME")
     private User user;
 
+    /**
+     * Default constructor 
+     */
     public Staff() {
     }
 
+    /**
+     * Parameterized  Constructor
+     * @param name
+     * @param department
+     * @param phone
+     */
     public Staff(String name, String department, Integer phone) {
         this.name = name;
         this.department = department;
@@ -85,11 +89,19 @@ public class Staff extends AbstractNamedEntity {
         this.department = department;
     }
 
+    /**
+     * Helper method to convert the object to string type
+     * @return
+     */
     @Override
     public String toString() {
         return "Staff{" + "id=" + id + ", name=" + name + ", department=" + department + ", phone=" + phone + '}';
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -97,6 +109,11 @@ public class Staff extends AbstractNamedEntity {
         return hash;
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -115,18 +132,34 @@ public class Staff extends AbstractNamedEntity {
         return Objects.equals(this.id, other.id);
     }
 
+    /**
+     * Getter method to get the set of doctors for which the staff is working
+     * @return
+     */
     public List<Doctor> getDoctors() {
         return doctors;
     }
 
+    /**
+     * Setter method to assign the set of doctors to the staff.
+     * @param doctors
+     */
     public void setDoctors(List<Doctor> doctors) {
         this.doctors = doctors;
     }
 
+    /**
+     * Getter method to fetch the user in security domain
+     * @return
+     */
     public User getUser() {
         return user;
     }
 
+    /**
+     * Setter method to set the user in security domain
+     * @param user
+     */
     public void setUser(User user) {
         this.user = user;
     }

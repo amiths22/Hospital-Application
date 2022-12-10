@@ -17,11 +17,19 @@ public class JSFPhaseListener implements PhaseListener {
 
     private static final Logger LOG = Logger.getLogger(JSFPhaseListener.class.getName());
 
+    /**
+     * Get the value of phaseId
+     * @return
+     */
     @Override
     public PhaseId getPhaseId() {
         return PhaseId.ANY_PHASE;
     }
 
+    /**
+     * This method gives the logging information after a particular event
+     * @param event
+     */
     @Override
     public void afterPhase(PhaseEvent event) {
         
@@ -31,6 +39,10 @@ public class JSFPhaseListener implements PhaseListener {
         LOG.info("Before JSF Phase --------------------- "+event.getPhaseId().toString());
     }
 
+    /**
+     * This method gives the logging information after a particular event
+     * @param event
+     */
     @Override
     public void beforePhase(PhaseEvent event) {
         LOG.info("After JSF Phase --------------------- "+event.getPhaseId().toString());

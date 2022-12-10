@@ -51,9 +51,19 @@ public class Doctor extends AbstractNamedEntity {
     @JoinColumn(name = "USERNAME")
     private User user;
 
+    /**
+     * Default constructor
+     */
     public Doctor() {
     }
 
+    /**
+     * Parameterised constructor
+     * @param name
+     * @param stream
+     * @param phone
+     * @param address
+     */
     public Doctor(String name, String stream, Integer phone, String address) {
         this.name = name;
         this.specialization = stream;
@@ -61,6 +71,10 @@ public class Doctor extends AbstractNamedEntity {
         this.address = address;
     }
 
+    /**
+     * Helper method to add the staff
+     * @param s
+     */
     public void addStaff(Staff s) {
         if (!this.staffs.contains(s)) {
             this.staffs.add(s);
@@ -70,6 +84,10 @@ public class Doctor extends AbstractNamedEntity {
         }
     }
 
+    /**
+     * Helper method to delete the staff
+     * @param s
+     */
     public void removeStaff(Staff s) {
         if (this.staffs.contains(s)) {
             this.staffs.remove(s);
@@ -133,11 +151,19 @@ public class Doctor extends AbstractNamedEntity {
         this.specialization = stream;
     }
 
+    /**
+     * Helper method to convert the object to string type
+     * @return
+     */
     @Override
     public String toString() {
         return "Doctor{" + "id=" + id + ", name=" + name + ", stream=" + specialization + ", phone=" + phone + ", address=" + address + '}';
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -145,6 +171,11 @@ public class Doctor extends AbstractNamedEntity {
         return hash;
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -163,26 +194,50 @@ public class Doctor extends AbstractNamedEntity {
         return Objects.equals(this.id, other.id);
     }
 
+    /**
+     * Getter method to fetch all the appointments associated with the doctor
+     * @return
+     */
     public List<Appointment> getAppointments() {
         return appointments;
     }
 
+    /**
+     * Setter method to set the appointments to associate with the doctor
+     * @param appointments
+     */
     public void setAppointments(List<Appointment> appointments) {
         this.appointments = appointments;
     }
 
+    /**
+     * Getter method to fetch all the staffs working for the doctor
+     * @return
+     */
     public List<Staff> getStaffs() {
         return staffs;
     }
 
+    /**
+     * Setter method to set the staffs to work for the doctor
+     * @param staffs
+     */
     public void setStaffs(List<Staff> staffs) {
         this.staffs = staffs;
     }
 
+    /**
+     * Getter method to fetch the user in security domain
+     * @return
+     */
     public User getUser() {
         return user;
     }
 
+    /**
+     * Setter method to set the user in security domain
+     * @param user
+     */
     public void setUser(User user) {
         this.user = user;
     }

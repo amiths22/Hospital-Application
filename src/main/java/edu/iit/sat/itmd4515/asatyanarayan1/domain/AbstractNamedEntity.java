@@ -15,6 +15,9 @@ import javax.validation.constraints.Size;
 @MappedSuperclass
 public class AbstractNamedEntity extends AbstarctEntity {
 
+    /**
+     * This is Abstract Named Entity for the field name
+     */
     @NotBlank
     @Size(min = 3, max = 40)
     protected String name;

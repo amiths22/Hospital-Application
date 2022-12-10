@@ -13,15 +13,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 
@@ -45,8 +41,7 @@ public class Patient extends AbstarctEntity {
     
     @PastOrPresent
     private LocalDate dob;
-
-    
+ 
     private String address;
 
     @OneToMany(mappedBy = "patient")
@@ -56,7 +51,13 @@ public class Patient extends AbstarctEntity {
     @JoinColumn(name="USERNAME")    
     private User user;
     
-
+    /**
+     * Parameterised default constructor
+     * @param name
+     * @param gender
+     * @param dob
+     * @param address
+     */
     public Patient(String name, PatientGender gender, LocalDate dob, String address) {
         this.name = name;
         this.gender = gender;
@@ -64,8 +65,9 @@ public class Patient extends AbstarctEntity {
         this.address = address;
     }
 
-
-
+    /**
+     * Default constructor
+     */
     public Patient() {
     }
 
@@ -146,6 +148,12 @@ public class Patient extends AbstarctEntity {
         return "Patient{" + "id=" + id + ", name=" + name + ", dob=" + dob + ", address=" + address + '}';
     }*/
 
+    /**
+     *
+     * @return
+     */
+
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -153,6 +161,11 @@ public class Patient extends AbstarctEntity {
         return hash;
     }
 
+    /**
+     *
+     * @param that
+     * @return
+     */
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -171,20 +184,42 @@ public class Patient extends AbstarctEntity {
         return Objects.equals(this.id, other.id);
     }
 
+    /**
+     * Getter method to fetch all the appointments associated with the patient
+     * @return
+     */
     public List<Appointment> getAppointments() {
         return appointments;
     }
 
+    /**
+     * Setter method to assign the appointments associated to the patient
+     * @param appointments
+     */
     public void setAppointments(List<Appointment> appointments) {
         this.appointments = appointments;
     }
+
+    /**
+     * Getter method to fetch the user in security domain
+     * @return
+     */
     public User getUser() {
         return user;
     }
+
+    /**
+     * Setter method to set the user in security domain
+     * @param user
+     */
     public void setUser(User user) {
         this.user = user;
     }
 
+    /**
+     * Helper method to convert the object to string type
+     * @return
+     */
     @Override
     public String toString() {
         return "Patient{" + "name=" + name + ", gender=" + gender + ", dob=" + dob + ", address=" + address + ", user=" + user + '}';

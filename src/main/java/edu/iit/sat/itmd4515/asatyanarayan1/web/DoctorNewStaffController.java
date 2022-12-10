@@ -38,6 +38,9 @@ public class DoctorNewStaffController {
 
     private boolean showFacesMessage = false;
 
+    /**
+     *
+     */
     public DoctorNewStaffController() {
     }
 
@@ -49,6 +52,12 @@ public class DoctorNewStaffController {
 
     //axtion methods
     //these display methods are step 1 in the "MVC" style JSF
+
+    /**
+     *
+     * @param s
+     * @return
+     */
     public String displayReadStaffPage(Staff s) {
 
         LOG.info("Inside displayReadStaffPage with" + this.staff.toString());
@@ -58,6 +67,11 @@ public class DoctorNewStaffController {
 
     }
 
+    /**
+     *
+     * @param s
+     * @return
+     */
     public String displayUpdateStaffPage(Staff s) {
 
         LOG.info("Inside displayUpdateStaffPage with" + this.staff.toString());
@@ -67,6 +81,11 @@ public class DoctorNewStaffController {
 
     }
 
+    /**
+     *
+     * @param s
+     * @return
+     */
     public String displayDeleteStaffPage(Staff s) {
 
         LOG.info("Inside displayDeleteStaffPage with" + this.staff.toString());
@@ -76,6 +95,10 @@ public class DoctorNewStaffController {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public String executeCreateButton() {
         LOG.info("Inside executeCreate Button " + this.staff.toString());
 
@@ -99,6 +122,10 @@ public class DoctorNewStaffController {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public String executeUpdateButton() {
         LOG.info("Inside executeUpdateButton " + this.staff.toString());
         
@@ -110,6 +137,10 @@ public class DoctorNewStaffController {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public String executeDeleteButton() {
         LOG.info("Inside executeDeleteButton     " + this.staff.toString());
         
@@ -121,18 +152,34 @@ public class DoctorNewStaffController {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public Staff getStaff() {
         return staff;
     }
 
+    /**
+     *
+     * @param staff
+     */
     public void setStaff(Staff staff) {
         this.staff = staff;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isShowFacesMessage() {
         return showFacesMessage;
     }
 
+    /**
+     *
+     * @param showFacesMessage
+     */
     public void setShowFacesMessage(boolean showFacesMessage) {
         this.showFacesMessage = showFacesMessage;
     }

@@ -9,7 +9,15 @@ package edu.iit.sat.itmd4515.asatyanarayan1.domain;
  * @author amith
  */
 public enum PatientGender {
+
+    /**
+     *
+     */
     Male("Male"),
+
+    /**
+     *
+     */
     Female("Female");
    
     private String description;

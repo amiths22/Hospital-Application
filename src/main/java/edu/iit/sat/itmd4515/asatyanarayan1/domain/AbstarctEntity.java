@@ -20,9 +20,16 @@ import javax.persistence.Version;
 @MappedSuperclass
 public class AbstarctEntity {
 
+    /**
+     *
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
+
+    /**
+     *
+     */
     @Version
     protected Long version;
 
@@ -30,15 +37,25 @@ public class AbstarctEntity {
 
     private LocalDateTime updatedTimestamp;
 
+    /**
+     *
+     */
     @PrePersist
     public void createdTimestamp() {
         createdTimestamp = LocalDateTime.now();
     }
+
+    /**
+     *
+     */
     @PreUpdate
     public void updatedTimestamp() {
         createdTimestamp = LocalDateTime.now();
     }
 
+    /**
+     *
+     */
     public AbstarctEntity() {
     }
 
@@ -54,32 +71,56 @@ public class AbstarctEntity {
     /**
      * Set the value of Id
      *
-     * @param Id new value of Id
+     * @param id
      */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getVersion() {
         return version;
     }
 
+    /**
+     *
+     * @param version
+     */
     public void setVersion(Long version) {
         this.version = version;
     }
 
+    /**
+     *
+     * @return
+     */
     public LocalDateTime getCreatedTimestamp() {
         return createdTimestamp;
     }
 
+    /**
+     *
+     * @param createdTimestamp
+     */
     public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
     }
 
+    /**
+     *
+     * @return
+     */
     public LocalDateTime getUpdatedTimestamp() {
         return updatedTimestamp;
     }
 
+    /**
+     *
+     * @param updatedTimestamp
+     */
     public void setUpdatedTimestamp(LocalDateTime updatedTimestamp) {
         this.updatedTimestamp = updatedTimestamp;
     }

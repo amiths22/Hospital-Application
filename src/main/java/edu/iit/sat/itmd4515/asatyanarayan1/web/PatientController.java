@@ -26,6 +26,10 @@ public class PatientController {
     @EJB private PatientService patSvc;
 
     private Patient patient;
+
+    /**
+     *
+     */
     public PatientController() {
     }
 
@@ -36,11 +40,21 @@ public class PatientController {
         patient=new Patient();
     }
     //helper method
+
+    /**
+     *
+     * @return
+     */
     public PatientGender[] getAllGenders(){
         return PatientGender.values();
     }
 
     //axtion methods
+
+    /**
+     *
+     * @return
+     */
     public String savePatient() {
         LOG.info("Inside savePatient "+ this.patient.toString());
         
@@ -49,9 +63,19 @@ public class PatientController {
         return "/patient/CreatePatientConfirmation.xhtml"; 
 
     }
+
+    /**
+     *
+     * @return
+     */
     public Patient getPatient() {
         return patient;
     }
+
+    /**
+     *
+     * @param patient
+     */
     public void setPatient(Patient patient) {
         this.patient = patient;
     }

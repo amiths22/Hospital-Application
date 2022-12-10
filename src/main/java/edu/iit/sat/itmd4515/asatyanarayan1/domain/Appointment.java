@@ -37,14 +37,27 @@ public class Appointment extends AbstarctEntity {
     @ManyToOne
     private Patient patient;
 
+    /**
+     * Default constructor
+     */
     public Appointment() {
     }
 
+    /**
+     * Parameterized constructor
+     * @param date
+     * @param time
+     */
     public Appointment(LocalDate date, LocalTime time) {
         this.appointDate = date;
         this.appointTime = time;
     }
     
+    /**
+     * This is the helper method to create an appointment using patient and doctor parameters
+     * @param p
+     * @param d
+     */
     public void addAppt(Patient p,Doctor d){
         
         this.doctor=d;
@@ -58,7 +71,11 @@ public class Appointment extends AbstarctEntity {
         }
         
     }
-     public void delAppt(){
+
+    /**
+     * This is the helper method to delete the appointment
+     */
+    public void delAppt(){
         
         if(this.patient.getAppointments().contains(this)){
             this.patient.getAppointments().remove(this);
@@ -70,28 +87,52 @@ public class Appointment extends AbstarctEntity {
         this.patient=null;
         
     }
+
+    /**
+     * Getter method for appointment date
+     * @return
+     */
     public LocalDate getAppointDate() {
         return appointDate;
     }
 
+    /**
+     * Setter method for appointment date
+     * @param appointDate
+     */
     public void setAppointDate(LocalDate appointDate) {
         this.appointDate = appointDate;
     }
 
+    /**
+     * Getter method for appointment time
+     * @return
+     */
     public LocalTime getAppointTime() {
         return appointTime;
     }
 
+    /**
+     * Setter method for appointment time
+     * @param appointTime
+     */
     public void setAppointTime(LocalTime appointTime) {
         this.appointTime = appointTime;
     }
 
-
+    /**
+     * To string method to convert the object to string type
+     * @return
+     */
     @Override
     public String toString() {
         return "Appoinment{" + "id=" + id + ", date=" + appointDate + ", time=" + appointTime + '}';
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 5;
@@ -99,6 +140,11 @@ public class Appointment extends AbstarctEntity {
         return hash;
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -117,18 +163,34 @@ public class Appointment extends AbstarctEntity {
         return Objects.equals(this.id, other.id);
     }
 
+    /**
+     * Getter method to fetch the doctor object associated with the appointment
+     * @return
+     */
     public Doctor getDoctor() {
         return doctor;
     }
 
+    /**
+     * Setter method to set the doctor object to associate with the appointment
+     * @param doctor
+     */
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
     }
 
+    /**
+     * Getter method to fetch the patient object associated with the appointment
+     * @return
+     */
     public Patient getPatient() {
         return patient;
     }
 
+    /**
+     * Setter method to set the patient object to associate with the appointment
+     * @param patient
+     */
     public void setPatient(Patient patient) {
         this.patient = patient;
     }

@@ -5,7 +5,6 @@
 package edu.iit.sat.itmd4515.asatyanarayan1.web;
 
 import edu.iit.sat.itmd4515.asatyanarayan1.domain.Doctor;
-import edu.iit.sat.itmd4515.asatyanarayan1.domain.Staff;
 import edu.iit.sat.itmd4515.asatyanarayan1.service.DoctorService;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +12,6 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -26,7 +24,7 @@ public class DoctorController {
 
     private static final Logger LOG = Logger.getLogger(DoctorWelcomeController.class.getName());
 
-    //model- To find all the staffworking under the doctor
+    //model- To find all the staff working under the doctor
     private Doctor doctor;
 
     @EJB
@@ -34,9 +32,15 @@ public class DoctorController {
 //  private List<Doctor> doctors = new ArrayList<>();
     private List<Doctor> doctors = new ArrayList<>();
 
+    /**
+     * Default Constructor
+     */
     public DoctorController() {
     }
 
+    /**
+     * Post Construct method
+     */
     @PostConstruct
     public void postConstruct() {
         LOG.info("Inside DoctorController.postConstruct ");
@@ -45,6 +49,12 @@ public class DoctorController {
     }
 
     //utility method
+
+    /**
+     * Function to display all the information about the doctorby redirecting to a new page
+     * @param d
+     * @return
+     */
     public String displayReadDoctorPage(Doctor d) {
         this.doctor = d;
 
@@ -75,10 +85,18 @@ public class DoctorController {
         this.doctor = doctor;
     }
 
+    /**
+     * Getter method to fetch all the doctors in the system
+     * @return
+     */
     public List<Doctor> getDoctors() {
         return doctors;
     }
 
+    /**
+     * Setter method to set the list of doctors to the system
+     * @param doctors
+     */
     public void setDoctors(List<Doctor> doctors) {
         this.doctors = doctors;
     }

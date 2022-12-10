@@ -22,29 +22,58 @@ public class DoctorService {
     @PersistenceContext(name = "itmd4515PU")
     private EntityManager em;
 
+    /**
+     *
+     */
     public DoctorService() {
     }
 
+    /**
+     *
+     * @param d
+     */
     public void create(Doctor d) {
         em.persist(d);
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public Doctor read(Long id) {
         return em.find(Doctor.class, id);
     }
 
+    /**
+     *
+     * @param d
+     */
     public void update(Doctor d) {
         em.merge(d);
     }
 
+    /**
+     *
+     * @param d
+     */
     public void delete(Doctor d) {
         em.remove(em.merge(d));
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Doctor> findAll() {
         return em.createNamedQuery("Doctor.findAll", Doctor.class).getResultList();
     }
 
+    /**
+     *
+     * @param username
+     * @return
+     */
     public Doctor findByUsername(String username) {
         return em
                 .createNamedQuery("Doctor.findByUsername", Doctor.class)
@@ -52,6 +81,11 @@ public class DoctorService {
                 .getSingleResult();
     }
 
+    /**
+     *
+     * @param s
+     * @param d
+     */
     public void createStaffForDoctor(Staff s, Doctor d) {
         //We know s is new entity
         em.persist(s);
@@ -62,6 +96,10 @@ public class DoctorService {
         em.merge(managedDoctorReference);
     }
 
+    /**
+     *
+     * @param s
+     */
     public void deleteStaffForDoctor(Staff s) {
 
         Staff managedStaffReference = em.getReference(Staff.class, s.getId());
@@ -73,6 +111,10 @@ public class DoctorService {
         em.remove(managedStaffReference);
     }
 
+    /**
+     *
+     * @param s
+     */
     public void updateStaffForDoctor(Staff s) {
         //step1 get a managed ref
         Staff managedStaffReference = em.getReference(Staff.class, s.getId());

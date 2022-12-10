@@ -19,16 +19,27 @@ import javax.inject.Named;
 @Stateless
 public class AppointmentService extends AbstractService<Appointment> {
 
+    /**
+     * Default constructor
+     */
     public AppointmentService() {
         super(Appointment.class);
     }
 
-    
+    /**
+     *  Find all method is to find all the appointments in the system
+     * @return List of Appointment
+     */
     @Override
     public List<Appointment> findAll() {
         return em.createNamedQuery("Appointment.findAll", Appointment.class).getResultList();
     }
     
+    /**
+     * Helper method to schedule an appointment for the patient 
+     * By setting the selected date, time and a particular doctor
+     * @param appt
+     */
     public void scheduleAppointment(Appointment appt){
         Appointment newAppt=new Appointment();
         newAppt.setAppointDate(appt.getAppointDate());

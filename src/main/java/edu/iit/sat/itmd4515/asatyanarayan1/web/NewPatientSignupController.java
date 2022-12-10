@@ -28,7 +28,9 @@ public class NewPatientSignupController {
 
     @EJB UserService userSvc;
 
-    
+    /**
+     * Default Constructor  
+     */
     public NewPatientSignupController() {
     }
     
@@ -41,6 +43,10 @@ public class NewPatientSignupController {
         patient.setUser(new User());
     }
     
+    /**
+     * This is the action method to create a new patient using sign up
+     * @return
+     */
     public String executeNewPatientSignupClick(){
         
         LOG.info(this.patient.toString());
@@ -48,12 +54,26 @@ public class NewPatientSignupController {
         return "login.xhtml?faces-redirect=true";
     }
     
+    /**
+     * This function returns all the values of the enumerator in the form of an array
+     * @return
+     */
     public PatientGender[] getAllGenders(){
         return PatientGender.values();
     }
+
+    /**
+     * Get the value of patient
+     * @return
+     */
     public Patient getPatient() {
         return patient;
     }
+
+    /**
+     * Set the value of patient
+     * @param patient
+     */
     public void setPatient(Patient patient) {
         this.patient = patient;
     }

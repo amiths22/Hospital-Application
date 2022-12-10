@@ -18,17 +18,28 @@ import javax.inject.Named;
 @Stateless
 public class PatientService extends AbstractService<Patient> {
 
+    /**
+     * Default Constructor
+     */
     public PatientService() {
         super(Patient.class);
     }
 
-    
+    /**
+     * Find all method is to find all the patients in the system
+     * @return List of Patient
+     */
     @Override
     public List<Patient> findAll() {
         return em.createNamedQuery("Patient.findAll", Patient.class).getResultList();
     }
     
-      public Patient findByPUsername(String username) {
+    /**
+     * FindByPUsername method is to find the patient in the system by giving username as a parameter
+     * @param username
+     * @returns a single patient object 
+     */
+    public Patient findByPUsername(String username) {
         return em
                 .createNamedQuery("Patient.findByPUsername", Patient.class)
                 .setParameter("username", username)

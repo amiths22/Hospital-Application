@@ -18,10 +18,17 @@ import javax.inject.Named;
 @Stateless
 public class StaffService extends AbstractService<Staff> {
 
+    /**
+     * Default Constructor
+     */
     public StaffService() {
         super(Staff.class);
     }
 
+    /**
+     * Find all method is to find all the staffs in the system
+     * @return
+     */
     @Override
     public List<Staff> findAll() {
         return em.createNamedQuery("Staff.findAll", Staff.class).getResultList();

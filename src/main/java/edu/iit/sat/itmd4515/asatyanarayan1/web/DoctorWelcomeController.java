@@ -24,7 +24,7 @@ public class DoctorWelcomeController {
 
     private static final Logger LOG = Logger.getLogger(DoctorWelcomeController.class.getName());
 
-    //model- To find all the staffworking under the doctor
+    //model- To find all the staff working under the doctor
     private Doctor doctor;
 
     @Inject
@@ -32,9 +32,15 @@ public class DoctorWelcomeController {
     @EJB
     DoctorService docSvc;
 
+    /**
+     * Default constructor
+     */
     public DoctorWelcomeController() {
     }
 
+    /**
+     * Post construct method
+     */
     @PostConstruct
     public void postConstruct() {
         LOG.info("Inside DoctorWelcomeController.postConstruct ");
@@ -43,10 +49,18 @@ public class DoctorWelcomeController {
     }
 
     //utility method
+
+    /**
+     * This is the utility method which helps to refresh the logged in user and update the data in the view
+     */
     public void refreshDoctor() {
         doctor = docSvc.findByUsername(loginController.getAuthenticatedUser());
     }
 
+    /**
+     * This method is used to find all the doctors in the system
+     * @return
+     */
     public List<Doctor> findAllDoctors() {
         return docSvc.findAll();
     }

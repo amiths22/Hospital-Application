@@ -35,6 +35,9 @@ public class PatientApptController {
     @EJB DoctorService docSvc;
     @EJB AppointmentService apptSvc;
 
+    /**
+     * Default constructor
+     */
     public PatientApptController() {
     }
 
@@ -46,10 +49,20 @@ public class PatientApptController {
         appt.setDoctor(new Doctor());
     }
 
+    /**
+     * This method is used to initialize the appt by setting the doctor 
+     * Doctor is fetched by the doctor id parameter
+     */
     public void initDocById() {
         appt.setDoctor(docSvc.read(this.appt.getDoctor().getId()));
     }
 
+    /**
+     * this action method helps to display the appointment scheduling page
+     * and setting the parameter of appt object
+     * @param d
+     * @return
+     */
     public String displaySchedApptPage(Doctor d) {
         LOG.info("inside displaySchedApptPage " + d.toString());
 
@@ -60,6 +73,12 @@ public class PatientApptController {
         return "/patient/schedAppt.xhtml";
     }
 
+    /**
+     * This is the action method to schedule the appointment the Schedule button is clicked
+     * It saves the data to the DB
+     * It redirects the user to welcome page
+     * @return
+     */
     public String executeScheduleButtonClick() {
         LOG.info("Inside executeScheduleButtonClick with" + this.appt.toString());
         LOG.info("Inside executeScheduleButtonClick with" + this.appt.getPatient().toString());
@@ -69,26 +88,50 @@ public class PatientApptController {
         return "/patient/welcome.xhtml";
     }
 
+    /**
+     * Get the value of patient
+     * @return
+     */
     public Patient getPat() {
         return pat;
     }
 
+    /**
+     * Set the value of patient
+     * @param pat
+     */
     public void setPat(Patient pat) {
         this.pat = pat;
     }
 
+    /**
+     * Get the value of Doctor
+     * @return
+     */
     public Doctor getDoc() {
         return doc;
     }
 
+    /**
+     *Set the value of Doctor
+     * @param doc
+     */
     public void setDoc(Doctor doc) {
         this.doc = doc;
     }
 
+    /**
+     * Get the value of appointment
+     * @return
+     */
     public Appointment getAppt() {
         return appt;
     }
 
+    /**
+     *Set the value of appointment
+     * @param appt
+     */
     public void setAppt(Appointment appt) {
         this.appt = appt;
     }

@@ -16,16 +16,26 @@ import javax.ejb.Stateless;
 @Stateless
 public class UserService extends AbstractService<User>{
 
+    /**
+     * Default Constructor
+     */
     public UserService() {
         super(User.class);
     }
     
-
+    /**
+     * Find all method is to find all the user in the system
+     * @return
+     */
     @Override
     public List<User> findAll() {
                 return em.createNamedQuery("User.findAll", User.class).getResultList();
     }
     
+    /**
+     * Helper method to add a new patient using the signup module
+     * @param p
+     */
     public void signupNewPatientUser(Patient p){
         //
         Group patientGroup=em.createQuery("select g from Group g where g.groupName='PATIENT_GROUP'", Group.class).getSingleResult();

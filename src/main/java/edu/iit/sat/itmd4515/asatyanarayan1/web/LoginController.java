@@ -39,6 +39,9 @@ public class LoginController {
     @Inject
     FacesContext facesContext;
 
+    /**
+     * Default constructor
+     */
     public LoginController() {
     }
 
@@ -49,25 +52,54 @@ public class LoginController {
         LOG.info("Inside login controller.postconstruct with");
 
     }
-    //helper method
+  
+
+    /**
+     * Helper method to get the current authenticated user
+     * @return
+     */
     public String getAuthenticatedUser(){
         //return securityContext.getCallerPrincipal().getName();
         return facesContext.getExternalContext().getRemoteUser();
     }
+
+    /**
+     * Helper method to check if the logged in user is a admin
+     * @return
+     */
     public boolean isAdmin(){
         return securityContext.isCallerInRole("ADMIN_ROLE"); 
     }
-     public boolean isDoctor(){
+
+    /**
+     * Helper method to check if the logged in user is a doctor
+     * @return
+     */
+    public boolean isDoctor(){
         return securityContext.isCallerInRole("DOCTOR_ROLE"); 
     }
-      public boolean isPatient(){
+
+    /**
+     *  Helper method to check if the logged in user is a patient
+     * @return
+     */
+    public boolean isPatient(){
         return securityContext.isCallerInRole("PATIENT_ROLE"); 
     }
-       public boolean isStaff(){
+
+    /**
+     * Helper method to check if the logged in user is a staff
+     * @return
+     */
+    public boolean isStaff(){
         return securityContext.isCallerInRole("STAFF_ROLE"); 
     }
     
-    
+    /**
+     * This function helps to perform the login operation by
+     * Checking the username and password and authenticating it with the DB
+     * @return
+     */
     public String doLogin() {
         LOG.info("Inside dologin " + this.user.getUserName());
 
@@ -99,6 +131,10 @@ public class LoginController {
         return "/welcome.xhtml?faces-redirect=true";
     }
     
+    /**
+     * This function helps to log out the user from the application
+     * @return
+     */
     public String doLogout(){
         
         HttpServletRequest req=(HttpServletRequest) facesContext.getExternalContext().getRequest();
@@ -110,10 +146,19 @@ public class LoginController {
         }
         return "/login.xhtml?faces-redirect=true";
     }
+
+    /**
+     * Get the value of User
+     * @return
+     */
     public User getUser() {
         return user;
     }
 
+    /**
+     * Set the value of the user
+     * @param user
+     */
     public void setUser(User user) {
         this.user = user;
     }
