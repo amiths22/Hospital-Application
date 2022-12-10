@@ -11,7 +11,9 @@
     </ui:define>
 
     <ui:define name="content">
-        Admin content updated
+        Admin content 
+        
+        <h2>List of Patients</h2>
         <h:dataTable class="table table-striped" value="#{patientService.findAll()}" var="patient">
             <h:column>
                 <f:facet name="header"><h:outputText value="Patient_ID"/></f:facet>
@@ -29,7 +31,8 @@
                 </h:outputText>
             </h:column>
         </h:dataTable>
-        
+        <br/>
+        <h2>List of Appointments</h2>
         <h:dataTable class="table table-striped" value="#{appointmentService.findAll()}" var="appt">
             <h:column>
                 <f:facet name="header"><h:outputText value="Appointment_ID"/></f:facet>
