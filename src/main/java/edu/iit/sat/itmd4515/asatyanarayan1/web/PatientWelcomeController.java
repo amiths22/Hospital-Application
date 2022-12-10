@@ -44,8 +44,13 @@ public class PatientWelcomeController {
 
     }
 
+    public void refreshPatient() {
+        patient = patSvc.findByPUsername(loginController.getAuthenticatedUser());
+    }
+
     /**
      * Get the value of patient
+     *
      * @return
      */
     public Patient getPatient() {
@@ -54,6 +59,7 @@ public class PatientWelcomeController {
 
     /**
      * Set the value of patient
+     *
      * @param patient
      */
     public void setPatient(Patient patient) {

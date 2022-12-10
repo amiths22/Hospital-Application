@@ -32,12 +32,41 @@
             </h:column>
             <h:column>
                 <h:form>
-                    <h:commandLink value="read" action="#{doctorNewStaffController.displayReadStaffPage(staff)}"/>
-                    <h:commandLink value="update" action="#{doctorNewStaffController.displayUpdateStaffPage(staff)}"/>
-                    <h:commandLink value="delete" action="#{doctorNewStaffController.displayDeleteStaffPage(staff)}"/>
+                    <h:commandButton value="read" action="#{doctorNewStaffController.displayReadStaffPage(staff)}"/>
+                    <h:commandButton value="update" action="#{doctorNewStaffController.displayUpdateStaffPage(staff)}"/>
+                    <h:commandButton value="delete" action="#{doctorNewStaffController.displayDeleteStaffPage(staff)}"/>
 
                 </h:form>
             </h:column>
+        </h:dataTable>
+        
+        <h2>List of Appointments of #{doctorWelcomeController.doctor.name}</h2>
+        <h:dataTable class="table table-striped" value="#{doctorWelcomeController.doctor.appointments}" var="appt">
+            <h:column>
+                <f:facet name="header"><h:outputText value="Appointment_ID"/></f:facet>
+                <h:outputText value="#{appt.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Date"/></f:facet>
+                <h:outputText value="#{appt.appointDate}">
+                    <f:convertDateTime type="localDate" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Time"/></f:facet>
+                <h:outputText value="#{appt.appointTime}">
+                    <f:convertDateTime type="localTime" timeStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Patient Name"/></f:facet>
+                <h:outputText value="#{appt.patient.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Doctor Name"/></f:facet>
+                <h:outputText value="#{appt.doctor.name}"/>
+            </h:column>
+            
         </h:dataTable>
     </ui:define>
 

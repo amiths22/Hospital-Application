@@ -18,7 +18,7 @@
     <cc:implementation>
         <h:form>
             <h:panelGroup rendered="#{not cc.attrs.operation.equalsIgnoreCase('create')}" layout="block" styleClass="mb-3">
-                <h:outputLabel for="doctorId" value="Doctor ID #{cc.attrs.appt.id} " styleClass="form-label"/>
+                <h:outputLabel for="doctorId" value="Appointment ID #{cc.attrs.appt.id} " styleClass="form-label"/>
                 <h:inputHidden
                     id="apptId"
                     value="#{cc.attrs.appt.id}"/>

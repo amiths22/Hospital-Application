@@ -14,9 +14,7 @@
        <!-- <h:panelGrid rendered="#{doctorNewStaffController.showFacesMessage}" class="alert alert-success" role="alert">
             <h:messages globalOnly="true" showSummary="true" showDetail="true" />
         </h:panelGrid>-->
-        <h1>#{view.viewId}</h1>
-        Doctor content l
-        <!--<h:link outcome="CreateStaff" value="Create New Staff"/>-->
+        <h3>#{view.viewId}</h3>
         <h:dataTable class="table table-striped" value="#{doctorController.doctors}" var="doc">
             <h:column>
                 <f:facet name="header"><h:outputText value="Doctor_ID"/></f:facet>
@@ -33,14 +31,51 @@
             <h:column>
                 <h:form>
 
-                    <h:commandLink value="read" action="#{doctorController.displayReadDoctorPage(doc)}"/>
-                    <h:commandLink value="Schedule Appt" action="#{patientApptController.displaySchedApptPage(doc)}"/>
-                    
-                    <h:button value="Schedule appt param style" outcome="/patient/schedAppt.xhtml">
+                    <h:commandButton value="Read " action="#{doctorController.displayReadDoctorPage(doc)}"/>
+                    <h:button value="Schedule Appointment" outcome="/patient/schedAppt.xhtml">
                         <f:param name="doctorId" value="#{doc.id}"/>
                     </h:button>
 
                 </h:form>
+            </h:column>
+        </h:dataTable>
+        <h2>List of Appointments of #{patientWelcomeController.patient.name}</h2>
+        <h:dataTable class="table table-striped" value="#{patientWelcomeController.patient.appointments}" var="appt">
+            <h:column>
+                <f:facet name="header"><h:outputText value="Appointment_ID"/></f:facet>
+                <h:outputText value="#{appt.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Date"/></f:facet>
+                <h:outputText value="#{appt.appointDate}">
+                    <f:convertDateTime type="localDate" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Time"/></f:facet>
+                <h:outputText value="#{appt.appointTime}">
+                    <f:convertDateTime type="localTime" timeStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Patient Name"/></f:facet>
+                <h:outputText value="#{appt.patient.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Doctor Name"/></f:facet>
+                <h:outputText value="#{appt.doctor.name}"/>
+            </h:column>
+            <h:column>
+
+                <h:link outcome="/patient/viewAppt.xhtml" value="View ">
+                    <f:param name="apptId" value="#{appt.id}"/>
+                </h:link>
+                <h:link outcome="/patient/changeAppt.xhtml" value="Change ">
+                    <f:param name="apptId" value="#{appt.id}"/>
+                </h:link>
+                <h:link outcome="/patient/cancelAppt.xhtml" value="Cancel">
+                    <f:param name="apptId" value="#{appt.id}"/>
+                </h:link>
             </h:column>
         </h:dataTable>
     </ui:define>

@@ -52,4 +52,20 @@ public class AppointmentService extends AbstractService<Appointment> {
         em.persist(newAppt);
     }
     
+    public void cancelAppointment(Appointment appt){
+        appt=em.getReference(Appointment.class, appt.getId());
+        appt.delAppt();
+        
+        em.remove(appt);
+    }
+    
+    public void changeAppointment(Appointment appt){
+        Appointment managedAppt = em.getReference(Appointment.class, appt.getId());
+        
+        managedAppt.setAppointDate(appt.getAppointDate());
+        managedAppt.setAppointTime(appt.getAppointTime()); 
+        em.persist(managedAppt);
+    }
+    
+    
 }

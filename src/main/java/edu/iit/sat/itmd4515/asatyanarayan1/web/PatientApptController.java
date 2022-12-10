@@ -47,6 +47,8 @@ public class PatientApptController {
         appt = new Appointment();
         appt.setPatient(patientWelcomeController.getPatient());
         appt.setDoctor(new Doctor());
+        
+        LOG.info("Leaving PatientApptController.postConstruct with"+appt.toString());
     }
 
     /**
@@ -56,6 +58,12 @@ public class PatientApptController {
     public void initDocById() {
         appt.setDoctor(docSvc.read(this.appt.getDoctor().getId()));
     }
+    
+    public void initApptById() {
+        this.appt=apptSvc.read(appt.getId());
+        appt.setDoctor(docSvc.read(this.appt.getDoctor().getId()));
+    }
+
 
     /**
      * this action method helps to display the appointment scheduling page
@@ -85,6 +93,26 @@ public class PatientApptController {
 //        LOG.info("Inside executeScheduleButtonClick with" + this.doc.toString());
         LOG.info("Inside executeScheduleButtonClick with" + this.appt.getDoctor().toString());
         apptSvc.scheduleAppointment(appt);
+        patientWelcomeController.refreshPatient();
+        return "/patient/welcome.xhtml";
+    }
+    
+    public String executeChangeButtonClick() {
+        LOG.info("Inside executeChangeButtonClick with" + this.appt.toString());
+        LOG.info("Inside executeChangeButtonClick with" + this.appt.getPatient().toString());
+//        LOG.info("Inside executeScheduleButtonClick with" + this.doc.toString());
+        LOG.info("Inside executeChangeButtonClick with" + this.appt.getDoctor().toString());
+        apptSvc.changeAppointment(appt);
+        patientWelcomeController.refreshPatient();
+        return "/patient/welcome.xhtml";
+    }
+    public String executeCancelButtonClick() {
+        LOG.info("Inside executeCancelButtonClick with" + this.appt.toString());
+        LOG.info("Inside executeCancelButtonClick with" + this.appt.getPatient().toString());
+//        LOG.info("Inside executeScheduleButtonClick with" + this.doc.toString());
+        LOG.info("Inside executeCancelButtonClick with" + this.appt.getDoctor().toString());
+        apptSvc.cancelAppointment(appt);
+        patientWelcomeController.refreshPatient();
         return "/patient/welcome.xhtml";
     }
 
