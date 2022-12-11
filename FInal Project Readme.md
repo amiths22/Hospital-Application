@@ -23,6 +23,10 @@ One to Many: A doctor and appointment also have one-to-many relationships, where
 The initial page is the login page where doctor, staff, patient and admin can login. It also contains a link for patient to sign up and use the application.
 If a doctor or staff is admin, they can access the admin module.
 
+Below is the ER diagram for application
+![image](https://user-images.githubusercontent.com/112361486/206888469-b5c09745-ccd4-458f-92d7-acce07bdff27.png)
+
+
 
 - Requirements
 
@@ -158,6 +162,22 @@ Javadoc can be accessed by clicking on apidocs in the login page
 
 
 - Expected Results
+
+A patient can be signed up by clicking sign up link present in the login page.
+A patient username can be used to login to patient module, where patient can select a doctor to schedule appointment and view their own list of appointments
+
+A doctor can be added by admin.
+A doctor can view the list of staffs working for them and also can modify or delete them. A doctor can also add new staff.
+A doctor can view the appointment which belong to them.
+A doctor can also be an admin, if so admin module can be accessed.
+
+A staff can be added by a doctor.
+Staff module can be accessed by staff creds
+
+Admin module can be accessed by admin creds
+Admin can add a new doctor
+Admin can view the list of doctors, list of all patients and list of all appointments.
+
 
 Login:
 
