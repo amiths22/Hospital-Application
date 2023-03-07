@@ -66,7 +66,7 @@ public class PatientValdationTest {
     }
     @Test
      public void patientIsInValid_malformeddate() {
-        Patient p= new Patient("Anu",PatientGender.Male,LocalDate.of(2023, Month.MARCH, 15),"Hassan");
+        Patient p= new Patient("Anu",PatientGender.Male,LocalDate.of(2024, Month.MARCH, 15),"Hassan");
         Set<ConstraintViolation<Patient>> violations = validator.validate(p);
         
        for(ConstraintViolation<Patient> violation : violations){
@@ -78,7 +78,7 @@ public class PatientValdationTest {
      
     @Test
      public void AppointmentIsValid_apptdate() {
-        Appointment a = new Appointment(LocalDate.of(2023, Month.MARCH, 1),LocalTime.of(4, 0));
+        Appointment a = new Appointment(LocalDate.of(2024, Month.MARCH, 31),LocalTime.of(4, 0));
         Set<ConstraintViolation<Appointment>> violations = validator.validate(a);
        for(ConstraintViolation<Appointment> violation : violations){
            System.out.println(violation.toString());
@@ -89,7 +89,7 @@ public class PatientValdationTest {
      
      @Test
      public void AppointmentIsInValid_apptdate() {
-        Appointment a = new Appointment(LocalDate.of(2020, Month.MARCH, 1),LocalTime.of(4, 0));
+        Appointment a = new Appointment(LocalDate.of(2020, Month.MARCH, 31),LocalTime.of(4, 0));
         Set<ConstraintViolation<Appointment>> violations = validator.validate(a);
        for(ConstraintViolation<Appointment> violation : violations){
            System.out.println(violation.toString());

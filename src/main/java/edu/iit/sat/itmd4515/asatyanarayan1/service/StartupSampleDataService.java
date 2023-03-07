@@ -147,13 +147,13 @@ public class StartupSampleDataService {
         docSvc.create(d3);
         d3.setUser(doctor3);
 
-        Appointment a1 = new Appointment(LocalDate.of(2023, Month.MARCH, 1), LocalTime.of(9, 0));
+        Appointment a1 = new Appointment(LocalDate.of(2024, Month.MARCH, 1), LocalTime.of(9, 0));
         a1.addAppt(p1, d1);
-        Appointment a2 = new Appointment(LocalDate.of(2023, Month.APRIL, 1), LocalTime.of(10, 00));
+        Appointment a2 = new Appointment(LocalDate.of(2024, Month.APRIL, 1), LocalTime.of(10, 00));
         a2.addAppt(p3, d1);
-        Appointment a3 = new Appointment(LocalDate.of(2023, Month.JUNE, 1), LocalTime.of(10, 00));
+        Appointment a3 = new Appointment(LocalDate.of(2024, Month.JUNE, 1), LocalTime.of(10, 00));
         a3.addAppt(p2, d2);
-        Appointment a4 = new Appointment(LocalDate.of(2023, Month.JANUARY, 1), LocalTime.of(15, 00));
+        Appointment a4 = new Appointment(LocalDate.of(2024, Month.JANUARY, 1), LocalTime.of(15, 00));
         a4.addAppt(p3, d3);
 
         apptSvc.create(a1);

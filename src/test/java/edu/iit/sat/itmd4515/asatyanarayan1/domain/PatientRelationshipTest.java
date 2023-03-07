@@ -54,7 +54,7 @@ public class PatientRelationshipTest extends AbstractJPATest {
         Patient p=new Patient("amith",PatientGender.Male,LocalDate.of(1998, Month.MARCH, 22),"hassan");
         Doctor d=new Doctor("amith","surgery",5,"hassan");
 
-        Appointment a = new Appointment(LocalDate.of(2023, Month.MARCH, 1),LocalTime.of(4, 0));
+        Appointment a = new Appointment(LocalDate.of(2024, Month.MARCH, 1),LocalTime.of(4, 0));
         
         a.setPatient(p);
         a.setDoctor(d);
